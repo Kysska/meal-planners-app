@@ -1,7 +1,7 @@
 [versions]
 agp = "8.5.0"
 kotlin = "1.9.0"
-coreKtx = "1.16.0"
+coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -9,6 +9,18 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
+retrofit = "2.9.0"
+okhttp = "4.10.0"
+gson = "2.10.1"
+retrofitrxjava = "2.9.0"
+rxjava = "2.2.16"
+rxAndroid = "2.1.1"
+timber = "5.0.1"
+navigationFragmentKtx = "2.8.2"
+navigationUiKtx = "2.8.2"
+dagger = "2.46"
+daggerCompiler = "2.46"
+roomVersion = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -19,6 +31,29 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+timber = { module = "com.jakewharton.timber:timber", version.ref="timber"}
+
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+retrofit-adapter-rxjava2 = { module="com.squareup.retrofit2:adapter-rxjava2", version.ref="retrofitrxjava"}
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava"}
+rxjava-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref="rxAndroid"}
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+dagger = { module="com.google.dagger:dagger", version.ref = "dagger"}
+dagger-compiler = { module= "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler"}
+
+room-runtime = { module="androidx.room:room-runtime", version.ref="roomVersion"}
+room-compiler = { module="androidx.room:room-compiler", version.ref="roomVersion"}
+room-ktx = { module="androidx.room:room-ktx", version.ref="roomVersion"}
+room-testing = { module="androidx.room:room-testing", version.ref="roomVersion"}
+room-rxjava2 = { module="androidx.room:room-rxjava2", version.ref="roomVersion"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
