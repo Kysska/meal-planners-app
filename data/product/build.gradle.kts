@@ -70,4 +70,6 @@ dependencies {
     implementation(libs.room.ktx)
     androidTestImplementation(libs.room.testing)
     implementation(libs.room.rxjava2)
+
+    implementation(project(":core"))
 }

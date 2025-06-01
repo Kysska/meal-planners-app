@@ -61,4 +61,6 @@ dependencies {
     kapt(libs.dagger.compiler)
 
     implementation(project(":data:recipe"))
+    implementation(project(":data:product"))
+    implementation(project(":data:category"))
 }
