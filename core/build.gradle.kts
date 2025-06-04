@@ -6,6 +6,8 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
+apply(from = "../ktlint.gradle")
+
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {

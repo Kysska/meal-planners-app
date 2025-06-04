@@ -13,7 +13,7 @@ class ProductRepositoryModule {
     @Singleton
     fun provideProductRepository(
         remoteProductDataSource: RemoteProductDataSource
-    ) : ProductRepository {
+    ): ProductRepository {
         return ProductRepositoryImpl(
             remoteProductDataSource
         )

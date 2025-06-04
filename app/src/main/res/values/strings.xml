@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">meal-planners-app</string>
+
+    <string name="planner_menu">Планнер</string>
+    <string name="library_menu">Библиотека</string>
+    <string name="shop_menu">Список покупок</string>
+    <string name="settings_menu">Настройки</string>
 </resources>

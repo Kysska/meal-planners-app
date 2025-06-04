@@ -13,7 +13,7 @@ class RecipeRepositoryModule {
     @Singleton
     fun provideRecipeRepository(
         remoteRecipeDataSource: RemoteRecipeDataSource
-    ) : RecipeRepository {
+    ): RecipeRepository {
         return RecipeRepositoryImpl(
             remoteRecipeDataSource
         )

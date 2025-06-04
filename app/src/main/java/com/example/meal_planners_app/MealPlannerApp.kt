@@ -13,7 +13,7 @@ class MealPlannerApp : Application() {
     }
 
     private fun initDebugTools() {
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             initTimber()
         }
     }

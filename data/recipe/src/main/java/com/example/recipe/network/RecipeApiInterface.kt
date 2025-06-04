@@ -7,14 +7,14 @@ import retrofit2.http.Query
 
 internal interface RecipeApiInterface {
     @GET("/recipes")
-    fun getRecipes() : Single<List<RecipeResponse>>
+    fun getRecipes(@Query("limit") limit: Int? = null): Single<List<RecipeResponse>>
 
     @GET("/recipe/")
-    fun getRecipe(@Query("id") id: Int) : Single<RecipeResponse>
+    fun getRecipe(@Query("id") id: Int): Single<RecipeResponse>
 
     @GET("/recipes/")
-    fun getRecipesByCategory(@Query("category") categoryId: Int) : Single<List<RecipeResponse>>
+    fun getRecipesByCategory(@Query("category") categoryId: Int): Single<List<RecipeResponse>>
 
     @GET("/recipes/")
-    fun getRecipesByQuery(@Query("search") query: String) : Single<List<RecipeResponse>>
+    fun getRecipesByQuery(@Query("search") query: String): Single<List<RecipeResponse>>
 }

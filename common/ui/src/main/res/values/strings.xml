@@ -1,0 +1,13 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="see_all">Просмотреть всё</string>
+    <string name="hint_text">Поиск…</string>
+
+    <string name="library_heading_title">Что вы хотели бы приготовить сегодня?</string>
+    <string name="library_categories_title">Категории</string>
+    <string name="library_recommendation_title">Рекомендации</string>
+    <string name="more_detailed">Подробнее</string>
+
+</resources>

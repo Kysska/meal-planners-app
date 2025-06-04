@@ -23,7 +23,7 @@ object ApiClient {
     private fun provideOkHttp(): OkHttpClient {
         return OkHttpClient.Builder()
             .apply {
-                if(BuildConfig.DEBUG) {
+                if (BuildConfig.DEBUG) {
                     addInterceptor(HttpLoggingInterceptor().apply {
                         level = HttpLoggingInterceptor.Level.BODY
                     })

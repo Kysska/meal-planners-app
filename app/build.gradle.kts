@@ -4,6 +4,8 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
+apply(from = "../ktlint.gradle")
+
 android {
     namespace = "com.example.meal_planners_app"
     compileSdk = 35
@@ -37,6 +39,10 @@ android {
     buildFeatures {
         buildConfig = true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -46,7 +52,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(project(":core"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -60,7 +65,13 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
+    //Navigation
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
     implementation(project(":data:recipe"))
     implementation(project(":data:product"))
     implementation(project(":data:category"))
+    implementation(project(":feature:library"))
+    implementation(project(":core"))
 }

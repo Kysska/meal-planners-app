@@ -13,7 +13,7 @@ class CategoryRepositoryModule {
     @Singleton
     fun provideCategoryRepository(
         remoteCategoryDataSource: RemoteCategoryDataSource
-    ) : CategoryRepository {
+    ): CategoryRepository {
         return CategoryRepositoryImpl(
             remoteCategoryDataSource
         )

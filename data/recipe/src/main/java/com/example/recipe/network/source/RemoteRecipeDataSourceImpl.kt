@@ -11,8 +11,8 @@ internal class RemoteRecipeDataSourceImpl(
     private val apiInterface: RecipeApiInterface,
     private val networkMapper: RecipeNetworkMapper
 ) : RemoteRecipeDataSource {
-    override fun getRecipes(): Single<List<Recipe>> {
-        return apiInterface.getRecipes()
+    override fun getRecipes(limit: Int?): Single<List<Recipe>> {
+        return apiInterface.getRecipes(limit)
             .map { response ->
                 networkMapper.map(response)
             }

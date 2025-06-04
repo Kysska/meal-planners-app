@@ -9,6 +9,8 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
+picasso = "2.4.0"
+picassoTransformations = "2.4.0"
 retrofit = "2.9.0"
 okhttp = "4.10.0"
 gson = "2.10.1"
@@ -32,6 +34,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+picasso-transformations = { module = "jp.wasabeef:picasso-transformations", version.ref = "picassoTransformations" }
 timber = { module = "com.jakewharton.timber:timber", version.ref="timber"}
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -43,6 +47,7 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava"}
 rxjava-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref="rxAndroid"}
+
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 

@@ -4,5 +4,5 @@ import com.example.core.model.Category
 import io.reactivex.Single
 
 interface CategoryRepository {
-    fun getCategories() : Single<List<Category>>
+    fun getCategories(): Single<List<Category>>
 }

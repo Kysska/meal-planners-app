@@ -1,6 +1,7 @@
 package com.example.meal_planners_app.di
 
 import android.content.Context
+import com.example.library.di.LibraryComponent
 import com.example.meal_planners_app.MainActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -19,4 +20,5 @@ interface AppComponent {
     }
 
     fun inject(activity: MainActivity)
+    val libraryComponent: LibraryComponent.Factory
 }

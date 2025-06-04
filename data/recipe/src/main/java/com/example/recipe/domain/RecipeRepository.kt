@@ -3,8 +3,8 @@ package com.example.recipe.domain
 import io.reactivex.Single
 
 interface RecipeRepository {
-    fun getRecipes() : Single<List<Recipe>>
-    fun getRecipeById(id: Int) : Single<Recipe>
-    fun getRecipeByCategory(categoryId: Int) : Single<List<Recipe>>
-    fun getRecipeByQuery(query: String) : Single<List<Recipe>>
+    fun getRecipes(limit: Int?): Single<List<Recipe>>
+    fun getRecipeById(id: Int): Single<Recipe>
+    fun getRecipeByCategory(categoryId: Int): Single<List<Recipe>>
+    fun getRecipeByQuery(query: String): Single<List<Recipe>>
 }

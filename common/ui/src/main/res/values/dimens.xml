@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_margin_large">32dp</dimen>
+    <dimen name="material_margin_normal">16dp</dimen>
+    <dimen name="material_margin_small">8dp</dimen>
+    <dimen name="material_margin_super_small">2dp</dimen>
+
+    <dimen name="material_padding_large">32dp</dimen>
+    <dimen name="material_padding_normal">16dp</dimen>
+    <dimen name="material_padding_small">8dp</dimen>
+    <dimen name="material_padding_super_small">4dp</dimen>
+
+    <dimen name="text_small_size">16dp</dimen>
+    <dimen name="text_normal_size">18dp</dimen>
+    <dimen name="text_large_size">22dp</dimen>
+    <dimen name="text_large_x2_size">26dp</dimen>
+
+    <dimen name="corner_size">16dp</dimen>
+
+</resources>

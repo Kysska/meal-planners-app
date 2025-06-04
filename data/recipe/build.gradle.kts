@@ -4,6 +4,8 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
+apply(from = "../../ktlint.gradle")
+
 android {
     namespace = "com.example.recipe"
     compileSdk = 34

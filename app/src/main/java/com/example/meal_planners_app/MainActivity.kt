@@ -1,34 +1,34 @@
 package com.example.meal_planners_app
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.core.util.applySchedulers
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.example.meal_planners_app.databinding.ActivityMainBinding
 import com.example.meal_planners_app.di.DiProvider
+import com.example.meal_planners_app.di.SubComponents
 import com.example.recipe.domain.RecipeRepository
-import io.reactivex.disposables.CompositeDisposable
-import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SubComponents {
+
+    private lateinit var binding: ActivityMainBinding
+
     @Inject
     lateinit var recipeRepository: RecipeRepository
-
-    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DiProvider.appComponent().inject(this)
-        compositeDisposable.add(
-            recipeRepository.getRecipes()
-                .applySchedulers()
-                .subscribe({ recipes ->
-                    Timber.tag("success").d(recipes.toString())
-                }, { error ->
-                    Timber.tag("error").e(error.toString())
-                })
-        )
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val host: NavHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment? ?: return
+
+        val navController = host.navController
+
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 }

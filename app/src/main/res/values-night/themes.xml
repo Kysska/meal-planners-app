@@ -3,5 +3,8 @@
     <style name="Base.Theme.Mealplannersapp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorAccent">@color/orange</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 </resources>

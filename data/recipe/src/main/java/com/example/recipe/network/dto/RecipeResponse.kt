@@ -3,12 +3,12 @@ package com.example.recipe.network.dto
 import com.example.core.model.CategoryResponse
 import com.google.gson.annotations.SerializedName
 
-internal data class RecipeResponse (
+internal data class RecipeResponse(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("image")
     val image: String?,
-    @SerializedName("name")
+    @SerializedName("recipe_name")
     val name: String?,
     @SerializedName("description")
     val description: String?,
