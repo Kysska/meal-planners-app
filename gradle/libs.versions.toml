@@ -23,6 +23,7 @@ navigationUiKtx = "2.8.2"
 dagger = "2.46"
 daggerCompiler = "2.46"
 roomVersion = "2.6.1"
+litertSupportApi = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -59,6 +60,7 @@ room-compiler = { module="androidx.room:room-compiler", version.ref="roomVersion
 room-ktx = { module="androidx.room:room-ktx", version.ref="roomVersion"}
 room-testing = { module="androidx.room:room-testing", version.ref="roomVersion"}
 room-rxjava2 = { module="androidx.room:room-rxjava2", version.ref="roomVersion"}
+litert-support-api = { group = "com.google.ai.edge.litert", name = "litert-support-api", version.ref = "litertSupportApi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -3,12 +3,12 @@ package com.example.library
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.category.domain.Category
 import com.example.category.domain.CategoryRepository
-import com.example.core.model.Category
-import com.example.core.util.applySchedulers
 import com.example.recipe.domain.Recipe
 import com.example.recipe.domain.RecipeRepository
 import com.example.ui.view.ViewState
+import com.example.utils.util.applySchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class LibraryViewModel(

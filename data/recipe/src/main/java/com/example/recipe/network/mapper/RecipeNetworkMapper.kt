@@ -1,13 +1,14 @@
 package com.example.recipe.network.mapper
 
-import com.example.core.mapper.CategoryNetworkMapper
-import com.example.core.mapper.NetworkMapper
-import com.example.core.model.Category
+import com.example.category.domain.Category
+import com.example.category.network.mapper.CategoryNetworkMapper
 import com.example.recipe.domain.Nutrients
 import com.example.recipe.domain.Recipe
 import com.example.recipe.network.dto.RecipeResponse
+import com.example.utils.mapper.NetworkMapper
 
-internal object RecipeNetworkMapper : NetworkMapper<Recipe, RecipeResponse> {
+internal object RecipeNetworkMapper :
+    NetworkMapper<Recipe, RecipeResponse> {
     override fun map(from: RecipeResponse): Recipe {
         return Recipe(
             id = from.id ?: 0,

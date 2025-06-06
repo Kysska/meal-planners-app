@@ -1,8 +1,8 @@
 package com.example.category.network
 
+import com.example.category.domain.Category
+import com.example.category.network.mapper.CategoryNetworkMapper
 import com.example.category.repository.source.RemoteCategoryDataSource
-import com.example.core.mapper.CategoryNetworkMapper
-import com.example.core.model.Category
 import io.reactivex.Single
 import timber.log.Timber
 

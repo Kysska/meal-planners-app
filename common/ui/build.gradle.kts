@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.litert.support.api)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -50,7 +51,6 @@ dependencies {
     implementation(project(":data:recipe"))
     implementation(project(":data:product"))
     implementation(project(":data:category"))
-    implementation(project(":core"))
 
     // Picasso
     implementation(libs.picasso)

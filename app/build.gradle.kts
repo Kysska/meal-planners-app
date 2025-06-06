@@ -73,5 +73,5 @@ dependencies {
     implementation(project(":data:product"))
     implementation(project(":data:category"))
     implementation(project(":feature:library"))
-    implementation(project(":core"))
+    implementation(project(":core:utils"))
 }

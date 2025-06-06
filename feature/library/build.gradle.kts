@@ -64,6 +64,6 @@ dependencies {
     implementation(project(":data:recipe"))
     implementation(project(":data:product"))
     implementation(project(":data:category"))
-    implementation(project(":core"))
+    implementation(project(":core:utils"))
     implementation(project(":common:ui"))
 }

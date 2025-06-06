@@ -1,6 +1,6 @@
 package com.example.category.network
 
-import com.example.core.model.CategoryResponse
+import com.example.category.network.dto.CategoryResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 

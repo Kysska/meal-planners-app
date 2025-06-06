@@ -1,6 +1,6 @@
 package com.example.recipe.domain
 
-import com.example.core.model.Category
+import com.example.category.domain.Category
 import java.util.UUID
 
 data class Recipe(

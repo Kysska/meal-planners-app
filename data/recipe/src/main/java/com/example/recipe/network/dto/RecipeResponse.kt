@@ -1,6 +1,6 @@
 package com.example.recipe.network.dto
 
-import com.example.core.model.CategoryResponse
+import com.example.category.network.dto.CategoryResponse
 import com.google.gson.annotations.SerializedName
 
 internal data class RecipeResponse(
