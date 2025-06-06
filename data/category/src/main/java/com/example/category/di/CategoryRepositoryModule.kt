@@ -2,6 +2,7 @@ package com.example.category.di
 
 import com.example.category.domain.CategoryRepository
 import com.example.category.repository.CategoryRepositoryImpl
+import com.example.category.repository.source.LocalCategoryDataSource
 import com.example.category.repository.source.RemoteCategoryDataSource
 import dagger.Module
 import dagger.Provides
@@ -12,10 +13,12 @@ class CategoryRepositoryModule {
     @Provides
     @Singleton
     fun provideCategoryRepository(
-        remoteCategoryDataSource: RemoteCategoryDataSource
+        remoteCategoryDataSource: RemoteCategoryDataSource,
+        localCategoryDataSource: LocalCategoryDataSource
     ): CategoryRepository {
         return CategoryRepositoryImpl(
-            remoteCategoryDataSource
+            remoteCategoryDataSource,
+            localCategoryDataSource
         )
     }
 }

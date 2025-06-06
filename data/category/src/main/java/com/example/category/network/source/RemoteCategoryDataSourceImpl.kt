@@ -1,6 +1,7 @@
-package com.example.category.network
+package com.example.category.network.source
 
 import com.example.category.domain.Category
+import com.example.category.network.CategoryApiInterface
 import com.example.category.network.mapper.CategoryNetworkMapper
 import com.example.category.repository.source.RemoteCategoryDataSource
 import io.reactivex.Single

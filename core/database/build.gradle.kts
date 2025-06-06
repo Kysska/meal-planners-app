@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 apply(from = "../../ktlint.gradle")
@@ -39,7 +40,23 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(project(":data:category"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //RxJava
+    implementation(libs.rxjava)
+    implementation(libs.rxjava.android)
+
+    //Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
+    //Room
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
+    androidTestImplementation(libs.room.testing)
+    implementation(libs.room.rxjava2)
 }
