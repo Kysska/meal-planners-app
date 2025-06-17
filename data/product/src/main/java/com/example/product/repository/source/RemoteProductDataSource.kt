@@ -7,4 +7,5 @@ interface RemoteProductDataSource {
     fun getProduct(): Single<List<Product>>
     fun getProductById(id: Int): Single<Product>
     fun getProductByCategory(categoryId: Int): Single<List<Product>>
+    fun getProductsByQuery(query: String): Single<List<Product>>
 }

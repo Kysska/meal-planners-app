@@ -17,7 +17,7 @@ internal class RemoteProductDataSourceImpl(
                 networkMapper.map(response)
             }
             .doOnError { throwable ->
-                Timber.tag("recipe data source").e(throwable)
+                Timber.tag(TAG).e(throwable)
             }
     }
 
@@ -27,7 +27,7 @@ internal class RemoteProductDataSourceImpl(
                 networkMapper.map(response)
             }
             .doOnError { throwable ->
-                Timber.tag("recipe data source").e(throwable)
+                Timber.tag(TAG).e(throwable)
             }
     }
 
@@ -37,7 +37,21 @@ internal class RemoteProductDataSourceImpl(
                 networkMapper.map(response)
             }
             .doOnError { throwable ->
-                Timber.tag("recipe data source").e(throwable)
+                Timber.tag(TAG).e(throwable)
             }
+    }
+
+    override fun getProductsByQuery(query: String): Single<List<Product>> {
+        return apiInterface.getProductsByQuery(query)
+            .map { response ->
+                networkMapper.map(response)
+            }
+            .doOnError { throwable ->
+                Timber.tag(TAG).e(throwable)
+            }
+    }
+
+    companion object {
+        private const val TAG = "productDataSource"
     }
 }

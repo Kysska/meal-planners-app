@@ -40,7 +40,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":data:category"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -59,4 +58,9 @@ dependencies {
     implementation(libs.room.ktx)
     androidTestImplementation(libs.room.testing)
     implementation(libs.room.rxjava2)
+
+    implementation(project(":data:category"))
+    implementation(project(":data:product"))
+    implementation(project(":data:mealtime"))
+    implementation(project(":data:recipe"))
 }

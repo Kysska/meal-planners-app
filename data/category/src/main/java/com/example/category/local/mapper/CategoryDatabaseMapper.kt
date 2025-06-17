@@ -4,18 +4,19 @@ import com.example.category.domain.Category
 import com.example.category.local.dto.CategoryDbEntity
 import com.example.utils.mapper.DatabaseMapper
 
-object CategoryDatabaseMapper : DatabaseMapper<CategoryDbEntity, Category> {
-    override fun map(from: CategoryDbEntity): Category {
-        return Category(
+object CategoryDatabaseMapper : DatabaseMapper<Category, CategoryDbEntity> {
+
+    override fun map(from: Category): CategoryDbEntity {
+        return CategoryDbEntity(
             id = from.id,
-            name = from.title
+            title = from.name
         )
     }
 
-    override fun reverseMap(to: Category): CategoryDbEntity {
-        return CategoryDbEntity(
+    override fun reverseMap(to: CategoryDbEntity): Category {
+        return Category(
             id = to.id,
-            title = to.name
+            name = to.title
         )
     }
 }

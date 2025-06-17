@@ -14,4 +14,7 @@ internal interface ProductApiInterface {
 
     @GET("/products/")
     fun getProductsByCategory(@Query("category") categoryId: Int): Single<List<ProductResponse>>
+
+    @GET("/products/")
+    fun getProductsByQuery(@Query("query") query: String): Single<List<ProductResponse>>
 }

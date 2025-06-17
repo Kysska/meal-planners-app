@@ -6,7 +6,7 @@ import com.example.product.domain.Product
 import com.example.product.network.dto.ProductResponse
 import java.util.UUID
 
-internal object ProductNetworkMapper :
+object ProductNetworkMapper :
     com.example.utils.mapper.NetworkMapper<Product, ProductResponse> {
     override fun map(from: ProductResponse): Product {
         return Product(

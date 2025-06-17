@@ -4,8 +4,7 @@ import com.example.recipe.domain.Nutrients
 import com.example.recipe.network.dto.NutrientsResponse
 import com.example.utils.mapper.NetworkMapper
 
-internal object NutritionNetworkMapper :
-    com.example.utils.mapper.NetworkMapper<Nutrients, NutrientsResponse> {
+object NutritionNetworkMapper : NetworkMapper<Nutrients, NutrientsResponse> {
     override fun map(from: NutrientsResponse): Nutrients {
         return Nutrients(
             id = from.id ?: 0,

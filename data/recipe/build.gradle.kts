@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":data:category"))
     implementation(project(":core:remote"))
     implementation(project(":core:remote"))
+    implementation(project(":data:product"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,10 +1,11 @@
 package com.example.recipe.network.dto
 
 import com.example.category.network.dto.CategoryResponse
+import com.example.product.network.dto.ProductResponse
 import com.google.gson.annotations.SerializedName
 
-internal data class RecipeResponse(
-    @SerializedName("id")
+data class RecipeResponse(
+    @SerializedName("recipe_id")
     val id: Int?,
     @SerializedName("image")
     val image: String?,
@@ -21,10 +22,12 @@ internal data class RecipeResponse(
     @SerializedName("category")
     val category: CategoryResponse?,
     @SerializedName("nutrients")
-    val nutrients: NutrientsResponse?
+    val nutrients: NutrientsResponse?,
+    @SerializedName("products")
+    val products: List<ProductResponse>? = listOf()
 )
 
-internal data class NutrientsResponse(
+data class NutrientsResponse(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("kcal")

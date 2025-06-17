@@ -72,6 +72,7 @@ dependencies {
     implementation(project(":data:recipe"))
     implementation(project(":data:product"))
     implementation(project(":data:category"))
+    implementation(project(":data:mealtime"))
     implementation(project(":feature:library"))
     implementation(project(":core:utils"))
     implementation(project(":core:database"))

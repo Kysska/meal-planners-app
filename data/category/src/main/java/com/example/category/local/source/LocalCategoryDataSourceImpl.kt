@@ -13,7 +13,7 @@ class LocalCategoryDataSourceImpl(
     private val databaseMapper: CategoryDatabaseMapper
 ) : LocalCategoryDataSource {
     override fun addCategory(category: Category): Completable {
-        val categoryDb = databaseMapper.reverseMap(category)
+        val categoryDb = databaseMapper.map(category)
         return categoryDao.insertCategory(categoryDb)
             .doOnComplete {
                 Timber.tag(TAG).d("Insert completed successfully")
@@ -25,7 +25,7 @@ class LocalCategoryDataSourceImpl(
 
     override fun getAllCategories(): Single<List<Category>> {
         return categoryDao.getAllCategories()
-            .map { response -> databaseMapper.map(response) }
+            .map { response -> databaseMapper.reverseMap(response) }
             .doOnError { throwable ->
                 Timber.tag(TAG).e(throwable)
             }

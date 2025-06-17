@@ -60,4 +60,9 @@ dependencies {
     implementation(libs.room.ktx)
     androidTestImplementation(libs.room.testing)
     implementation(libs.room.rxjava2)
+
+    implementation(project(":data:recipe"))
+    implementation(project(":data:category"))
+    implementation(project(":data:product"))
+    implementation(project(":core:utils"))
 }

@@ -1,6 +1,7 @@
 package com.example.recipe.domain
 
 import com.example.category.domain.Category
+import com.example.product.domain.Product
 import java.util.UUID
 
 data class Recipe(
@@ -12,7 +13,8 @@ data class Recipe(
     val times: String = "",
     val difficult: String = "",
     val nutrients: Nutrients = Nutrients(),
-    val category: Category = Category()
+    val category: Category = Category(),
+    val products: List<Product> = listOf()
 )
 
 data class Nutrients(
