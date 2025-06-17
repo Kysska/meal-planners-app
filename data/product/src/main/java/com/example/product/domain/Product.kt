@@ -1,7 +1,7 @@
 package com.example.product.domain
 
 import com.example.category.domain.Category
-import java.time.LocalDate
+import java.util.Date
 import java.util.UUID
 
 data class Product(
@@ -9,5 +9,5 @@ data class Product(
     val name: String = "",
     val image: String = "",
     val category: Category = Category(),
-    val date: LocalDate? = null
+    val date: Date? = null
 )

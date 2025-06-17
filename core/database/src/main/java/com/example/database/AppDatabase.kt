@@ -23,7 +23,7 @@ import com.example.recipe.local.dto.RecipeProductCrossRef
     ProductInCartDbEntity::class,
     ProductDbEntity::class,
     RecipeDbEntity::class, RecipeProductCrossRef::class,
-    MealtimeDbEntity::class,
+    MealtimeDbEntity::class
     ]
 )
 @TypeConverters(Converters::class)

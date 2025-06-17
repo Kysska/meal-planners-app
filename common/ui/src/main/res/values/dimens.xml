@@ -10,10 +10,10 @@
     <dimen name="material_padding_small">8dp</dimen>
     <dimen name="material_padding_super_small">4dp</dimen>
 
-    <dimen name="text_small_size">16dp</dimen>
-    <dimen name="text_normal_size">18dp</dimen>
-    <dimen name="text_large_size">22dp</dimen>
-    <dimen name="text_large_x2_size">26dp</dimen>
+    <dimen name="text_small_size">16sp</dimen>
+    <dimen name="text_normal_size">18sp</dimen>
+    <dimen name="text_large_size">22sp</dimen>
+    <dimen name="text_large_x2_size">26sp</dimen>
 
     <dimen name="corner_size">16dp</dimen>
 

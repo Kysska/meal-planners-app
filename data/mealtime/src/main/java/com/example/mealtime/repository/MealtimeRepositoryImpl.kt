@@ -5,12 +5,12 @@ import com.example.mealtime.domain.MealtimeRepository
 import com.example.mealtime.repository.source.LocalMealtimeDataSource
 import io.reactivex.Completable
 import io.reactivex.Observable
-import java.time.LocalDate
+import java.util.Date
 
 class MealtimeRepositoryImpl(
     private val mealtimeDataSource: LocalMealtimeDataSource
 ) : MealtimeRepository {
-    override fun getAllMealtimeByDate(date: LocalDate): Observable<List<Mealtime>> {
+    override fun getAllMealtimeByDate(date: Date): Observable<List<Mealtime>> {
         return mealtimeDataSource.getAllMealtimeByDate(date)
     }
 

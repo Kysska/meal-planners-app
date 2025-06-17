@@ -1,23 +1,21 @@
 package com.example.database
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 class Converters {
 
-    private val formatter = DateTimeFormatter.ISO_LOCAL_DATE
+    private val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     @TypeConverter
-    fun fromString(value: String?): LocalDate? {
-        return value?.let { LocalDate.parse(it, formatter) }
+    fun fromString(value: String?): Date? {
+        return value?.let { formatter.parse(it) }
     }
 
     @TypeConverter
-    fun localDateToString(date: LocalDate?): String? {
-        return date?.format(formatter)
+    fun dateToString(date: Date?): String? {
+        return date?.let { formatter.format(it) }
     }
 }

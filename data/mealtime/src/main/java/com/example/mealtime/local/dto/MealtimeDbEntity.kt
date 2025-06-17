@@ -5,9 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.recipe.domain.Recipe
 import com.example.recipe.local.dto.RecipeDbEntity
-import java.time.LocalDate
+import java.util.Date
 
 @Entity(
     tableName = "mealtime",
@@ -32,7 +31,7 @@ data class MealtimeDbEntity(
     @ColumnInfo(name = "gram")
     val gram: Int,
     @ColumnInfo(name = "date")
-    val date: LocalDate,
+    val date: Date?,
     @ColumnInfo(name = "type")
     val type: String
 )

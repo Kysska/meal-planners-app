@@ -10,4 +10,6 @@
     <string name="library_recommendation_title">Рекомендации</string>
     <string name="more_detailed">Подробнее</string>
 
+    <string name="date_with_calendar">%1$s 📅</string>
+
 </resources>

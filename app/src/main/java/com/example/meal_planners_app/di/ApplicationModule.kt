@@ -13,10 +13,11 @@ import com.example.product.di.ProductRepositoryModule
 import com.example.recipe.di.RecipeLocalDataModule
 import com.example.recipe.di.RecipeRemoteDataModule
 import com.example.recipe.di.RecipeRepositoryModule
+import com.example.weekplan.di.WeekplanComponent
 import dagger.Module
 
 @Module(
-    subcomponents = [LibraryComponent::class],
+    subcomponents = [LibraryComponent::class, WeekplanComponent::class],
     includes = [
         RecipeRemoteDataModule::class,
         RecipeRepositoryModule::class,

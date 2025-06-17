@@ -3,9 +3,8 @@ package com.example.product.local.mapper
 import com.example.category.local.mapper.CategoryDatabaseMapper
 import com.example.product.domain.Product
 import com.example.product.local.dto.ProductDbEntity
-import com.example.product.local.dto.ProductWithDate
 import com.example.utils.mapper.DatabaseMapper
-import java.time.LocalDate
+import java.util.Date
 
 object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
     override fun map(from: Product): ProductDbEntity {
@@ -26,7 +25,7 @@ object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
         )
     }
 
-    fun reverseMap(to: ProductDbEntity, date: LocalDate?): Product {
+    fun reverseMap(to: ProductDbEntity, date: Date?): Product {
         return Product(
             id = to.id,
             name = to.name,

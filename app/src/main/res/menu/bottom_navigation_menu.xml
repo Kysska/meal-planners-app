@@ -6,7 +6,7 @@
         android:title="@string/library_menu"
         />
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/plannerFragment"
         android:icon="@drawable/baseline_view_week_24"
         android:title="@string/planner_menu"/>
     <item

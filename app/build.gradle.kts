@@ -74,6 +74,7 @@ dependencies {
     implementation(project(":data:category"))
     implementation(project(":data:mealtime"))
     implementation(project(":feature:library"))
+    implementation(project(":feature:weekplan"))
     implementation(project(":core:utils"))
     implementation(project(":core:database"))
 }

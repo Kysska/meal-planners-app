@@ -1,12 +1,11 @@
 package com.example.product.local.dto
 
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.time.LocalDate
+import java.util.Date
 
 @Entity(tableName = "products_in_cart",
     foreignKeys = [
@@ -25,5 +24,5 @@ data class ProductInCartDbEntity(
     @ColumnInfo("product_id")
     val product: Int,
     @ColumnInfo("date")
-    val date: LocalDate?
+    val date: Date?
 )

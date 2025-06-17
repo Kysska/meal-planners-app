@@ -11,13 +11,13 @@ import com.example.mealtime.local.dto.MealtimeDbEntity
 import com.example.mealtime.local.dto.MealtimeWithRecipe
 import io.reactivex.Completable
 import io.reactivex.Observable
-import java.time.LocalDate
+import java.util.Date
 
 @Dao
 interface MealtimeDao {
     @Transaction
     @Query("SELECT * FROM mealtime WHERE date = :date")
-    fun getAllMealtimeByDate(date: LocalDate) : Observable<List<MealtimeWithRecipe>>
+    fun getAllMealtimeByDate(date: Date): Observable<List<MealtimeWithRecipe>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction

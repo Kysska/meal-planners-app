@@ -1,16 +1,13 @@
 package com.example.mealtime.local.mapper
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.mealtime.domain.Mealtime
 import com.example.mealtime.domain.MealtimeType
 import com.example.mealtime.local.dto.MealtimeDbEntity
-import com.example.recipe.domain.Recipe
 import com.example.recipe.local.dto.RecipeDbEntity
 import com.example.recipe.local.mapper.RecipeDatabaseMapper
 import com.example.utils.mapper.DatabaseMapper
+import java.util.Date
 
-@RequiresApi(Build.VERSION_CODES.O)
 object MealtimeDatabaseMapper : DatabaseMapper<Mealtime, MealtimeDbEntity> {
     override fun map(from: Mealtime): MealtimeDbEntity {
         return MealtimeDbEntity(
@@ -23,14 +20,13 @@ object MealtimeDatabaseMapper : DatabaseMapper<Mealtime, MealtimeDbEntity> {
         )
     }
 
-
     fun reverseMap(to: MealtimeDbEntity, recipe: RecipeDbEntity): Mealtime {
         return Mealtime(
             id = to.id,
             recipe = RecipeDatabaseMapper.reverseMap(recipe),
             quantity = to.quantity,
             gram = to.gram,
-            date = to.date,
+            date = to.date ?: Date(),
             type = MealtimeType.valueOf(to.type)
         )
     }
@@ -40,7 +36,7 @@ object MealtimeDatabaseMapper : DatabaseMapper<Mealtime, MealtimeDbEntity> {
             id = to.id,
             quantity = to.quantity,
             gram = to.gram,
-            date = to.date,
+            date = to.date ?: Date(),
             type = MealtimeType.valueOf(to.type)
         )
     }
