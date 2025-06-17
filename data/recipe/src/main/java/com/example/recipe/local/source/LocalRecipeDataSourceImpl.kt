@@ -1,17 +1,12 @@
 package com.example.recipe.local.source
 
-import com.example.product.local.dao.ProductDao
-import com.example.product.local.mapper.ProductDatabaseMapper
-import com.example.product.local.source.LocalProductDataSourceImpl
 import com.example.product.repository.source.LocalProductDataSource
 import com.example.recipe.domain.Recipe
 import com.example.recipe.local.dao.RecipeDao
 import com.example.recipe.local.dto.RecipeProductCrossRef
-import com.example.recipe.local.dto.RecipesWithProducts
 import com.example.recipe.local.mapper.RecipeDatabaseMapper
 import com.example.recipe.repository.source.LocalRecipeDataSource
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import timber.log.Timber
 
@@ -70,14 +65,14 @@ class LocalRecipeDataSourceImpl(
         val recipeDb = databaseMapper.map(recipe)
         return recipeDao.insertRecipe(recipeDb)
             .andThen(
-                Completable.merge (
+                Completable.merge(
                     recipe.products.map { product ->
                         productDataSource.addProduct(product)
                     }
                 )
             )
             .andThen(
-                Completable.merge (
+                Completable.merge(
                     recipe.products.map { product ->
                         val crossRef = RecipeProductCrossRef(
                             recipeId = recipeDb.id,

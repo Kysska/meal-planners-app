@@ -9,7 +9,6 @@ import com.example.recipe.local.dto.RecipeDbEntity
 import com.example.recipe.local.dto.RecipeProductCrossRef
 import com.example.recipe.local.dto.RecipesWithProducts
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 
 @Dao

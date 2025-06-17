@@ -1,13 +1,13 @@
 package com.example.recipe.local.mapper
 
 import com.example.category.local.mapper.CategoryDatabaseMapper
-import com.example.product.local.mapper.ProductDatabaseMapper
 import com.example.product.local.dto.ProductDbEntity
+import com.example.product.local.mapper.ProductDatabaseMapper
 import com.example.recipe.domain.Recipe
 import com.example.recipe.local.dto.RecipeDbEntity
 import com.example.utils.mapper.DatabaseMapper
 
-object RecipeDatabaseMapper: DatabaseMapper<Recipe, RecipeDbEntity> {
+object RecipeDatabaseMapper : DatabaseMapper<Recipe, RecipeDbEntity> {
     override fun map(from: Recipe): RecipeDbEntity {
         return RecipeDbEntity(
             id = from.id,

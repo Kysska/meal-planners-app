@@ -23,7 +23,7 @@ internal class ProductRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(PRODUCT_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(PRODUCT_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localProductDataSource.getProducts()
             }
     }
@@ -46,7 +46,7 @@ internal class ProductRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(PRODUCT_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(PRODUCT_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localProductDataSource.getProductsByCategory(categoryId)
             }
     }
@@ -61,7 +61,7 @@ internal class ProductRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(PRODUCT_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(PRODUCT_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localProductDataSource.getProductsByQuery(query)
             }
     }

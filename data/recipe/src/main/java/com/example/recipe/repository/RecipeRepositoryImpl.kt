@@ -22,7 +22,7 @@ internal class RecipeRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(RECIPE_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(RECIPE_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localRecipeDataSource.getRecipes(limit)
             }
     }
@@ -45,7 +45,7 @@ internal class RecipeRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(RECIPE_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(RECIPE_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localRecipeDataSource.getRecipesByCategory(categoryId)
             }
     }
@@ -60,7 +60,7 @@ internal class RecipeRepositoryImpl(
                 ).andThen(Single.just(networkData))
             }
             .onErrorResumeNext { throwable ->
-                Timber.tag(RECIPE_REPOSITORY).e(throwable,"Error fetching from network, loading from local")
+                Timber.tag(RECIPE_REPOSITORY).e(throwable, "Error fetching from network, loading from local")
                 localRecipeDataSource.getRecipesByQuery(query)
             }
     }

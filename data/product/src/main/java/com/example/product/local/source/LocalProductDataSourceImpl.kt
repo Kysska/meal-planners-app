@@ -3,7 +3,6 @@ package com.example.product.local.source
 import com.example.product.domain.Product
 import com.example.product.local.dao.ProductDao
 import com.example.product.local.dto.ProductInCartDbEntity
-import com.example.product.local.dto.ProductWithDate
 import com.example.product.local.mapper.ProductDatabaseMapper
 import com.example.product.repository.source.LocalProductDataSource
 import io.reactivex.Completable
