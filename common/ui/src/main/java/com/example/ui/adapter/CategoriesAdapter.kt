@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.category.domain.Category
 import com.example.ui.databinding.CategoriesItemBinding
 
-class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter(private val onClickListener: (id: Int) -> Unit) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     private var categories: List<Category> = emptyList()
 
@@ -17,6 +17,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
             binding.title.text = category.name
 
             binding.cardItem.setOnClickListener {
+                onClickListener(category.id)
             }
         }
     }

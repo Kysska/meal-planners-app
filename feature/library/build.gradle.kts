@@ -66,4 +66,5 @@ dependencies {
     implementation(project(":data:category"))
     implementation(project(":core:utils"))
     implementation(project(":common:ui"))
+    implementation(project(":feature:search"))
 }

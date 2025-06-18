@@ -77,6 +77,7 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
                     }
                 }
                 is ViewState.Error -> {}
+                else -> {}
             }
         }
 

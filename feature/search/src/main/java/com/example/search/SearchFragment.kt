@@ -1,0 +1,119 @@
+package com.example.search
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.search.databinding.FragmentSearchBinding
+import com.example.search.di.SearchComponentProvider
+import com.example.ui.adapter.RecipesAdapter
+import com.example.ui.screens.RecipeDetailsFragment
+import com.example.ui.utils.SearchTypeData
+import com.example.ui.view.ViewState
+import javax.inject.Inject
+
+class SearchFragment : Fragment(R.layout.fragment_search) {
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+    @Inject
+    lateinit var searchViewModel: SearchViewModel
+
+    private val recipesAdapter by lazy {
+        RecipesAdapter { id ->
+            navigateToRecipeDetails(id)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val fragmentComponent =
+            (requireActivity() as SearchComponentProvider).provideSearchComponent()
+        fragmentComponent.inject(this)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val title = getTitleArgument()
+        binding.apply {
+            toolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+            rvRecommendations.layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT)
+            rvRecommendations.adapter = recipesAdapter
+
+            when (title) {
+                SearchTypeData.CATEGORY -> {
+                    val id = getIdCategory()
+                    searchViewModel.loadRecipesByCategory(id)
+                }
+
+                SearchTypeData.RECOMMENDATION -> {
+                    tvRecommendation.text =
+                        requireContext().getString(com.example.ui.R.string.library_recommendation_title)
+                    searchViewModel.loadRecipes()
+                }
+            }
+        }
+
+        observeViewModel(title)
+    }
+
+    private fun observeViewModel(title: SearchTypeData) {
+        searchViewModel.recommendationState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ViewState.Loading -> {}
+                is ViewState.Success -> {
+                    if (state.data.isNotEmpty()) {
+                        recipesAdapter.submitList(state.data)
+                        if (title == SearchTypeData.CATEGORY) {
+                            binding.tvRecommendation.text = state.data.first().category.name
+                        }
+                    }
+                }
+
+                is ViewState.Error -> {}
+                else -> {}
+            }
+        }
+    }
+
+    private fun getTitleArgument(): SearchTypeData {
+        val title = requireArguments().getString(KEY_STRING, SearchTypeData.RECOMMENDATION.name)
+        return SearchTypeData.valueOf(title)
+    }
+
+    private fun getIdCategory(): Int {
+        return requireArguments().getInt(KEY_ID_CATEGORY)
+    }
+
+    private fun navigateToRecipeDetails(id: Int) {
+        val bundle = Bundle()
+        bundle.putInt(RecipeDetailsFragment.KEY_ID, id)
+        findNavController().navigate(com.example.ui.R.id.recipeDetailsFragment, args = bundle)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object {
+        const val KEY_STRING = "title"
+        const val KEY_ID_CATEGORY = "id"
+        private const val SPAN_COUNT = 2
+    }
+}

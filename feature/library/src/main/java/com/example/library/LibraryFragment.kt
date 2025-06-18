@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.library.databinding.FragmentLibraryBinding
 import com.example.library.di.LibraryComponentProvider
+import com.example.search.SearchFragment
 import com.example.ui.adapter.CategoriesAdapter
 import com.example.ui.adapter.RecipesAdapter
 import com.example.ui.screens.RecipeDetailsFragment
+import com.example.ui.utils.SearchTypeData
 import com.example.ui.view.ViewState
 import javax.inject.Inject
 
@@ -29,7 +31,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     }
 
     private val categoriesAdapter by lazy {
-        CategoriesAdapter()
+        CategoriesAdapter { id ->
+            navigateToSearchFragment(SearchTypeData.CATEGORY, id)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +56,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
         binding.scrollCategories.adapter = categoriesAdapter
         binding.rvRecommendations.adapter = recipesAdapter
+        binding.tvSeeAllRecommendation.setOnClickListener {
+            navigateToSearchFragment(SearchTypeData.RECOMMENDATION)
+        }
 
         observeViewModel()
     }
@@ -92,6 +99,15 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         val bundle = Bundle()
         bundle.putInt(RecipeDetailsFragment.KEY_ID, id)
         findNavController().navigate(com.example.ui.R.id.recipeDetailsFragment, args = bundle)
+    }
+
+    private fun navigateToSearchFragment(searchType: SearchTypeData, id: Int = 0) {
+        val bundle = Bundle()
+        bundle.putString(SearchFragment.KEY_STRING, searchType.name)
+        if (searchType == SearchTypeData.CATEGORY) {
+            bundle.putInt(SearchFragment.KEY_ID_CATEGORY, id)
+        }
+        findNavController().navigate(com.example.ui.R.id.searchFragment, args = bundle)
     }
 
     override fun onDestroyView() {

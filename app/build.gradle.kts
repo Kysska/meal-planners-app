@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":data:mealtime"))
     implementation(project(":feature:library"))
     implementation(project(":feature:weekplan"))
+    implementation(project(":feature:search"))
     implementation(project(":core:utils"))
     implementation(project(":core:database"))
     implementation(project(":common:ui"))

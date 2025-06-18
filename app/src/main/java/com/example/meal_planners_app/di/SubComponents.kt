@@ -2,12 +2,14 @@ package com.example.meal_planners_app.di
 
 import com.example.library.di.LibraryComponent
 import com.example.library.di.LibraryComponentProvider
+import com.example.search.di.SearchComponent
+import com.example.search.di.SearchComponentProvider
 import com.example.ui.di.CommonComponent
 import com.example.ui.di.CommonComponentProvider
 import com.example.weekplan.di.WeekplanComponent
 import com.example.weekplan.di.WeekplanComponentProvider
 
-interface SubComponents : LibraryComponentProvider, WeekplanComponentProvider, CommonComponentProvider {
+interface SubComponents : LibraryComponentProvider, WeekplanComponentProvider, CommonComponentProvider, SearchComponentProvider {
     override fun provideHomeComponent(): LibraryComponent {
         return DiProvider.appComponent().libraryComponent.create()
     }
@@ -18,5 +20,9 @@ interface SubComponents : LibraryComponentProvider, WeekplanComponentProvider, C
 
     override fun provideCommonComponent(): CommonComponent {
         return DiProvider.appComponent().commonComponent.create()
+    }
+
+    override fun provideSearchComponent(): SearchComponent {
+        return DiProvider.appComponent().searchComponent.create()
     }
 }

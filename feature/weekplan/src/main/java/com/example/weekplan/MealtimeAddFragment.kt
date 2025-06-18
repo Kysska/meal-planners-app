@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.search.SearchFragment
 import com.example.ui.extensions.validateInputs
+import com.example.ui.utils.SearchTypeData
 import com.example.weekplan.databinding.FragmentMealtimeAddBinding
 import com.example.weekplan.di.WeekplanComponentProvider
 import javax.inject.Inject
@@ -42,7 +44,16 @@ class MealtimeAddFragment : Fragment(R.layout.fragment_mealtime_add) {
             }
             quantityTextInput.validateInputs()
             grammInputLayout.validateInputs()
+            includedRecipeItem.root.setOnClickListener {
+                navigateToSearchFragment()
+            }
         }
+    }
+
+    private fun navigateToSearchFragment() {
+        val bundle = Bundle()
+        bundle.putString(SearchFragment.KEY_STRING, SearchTypeData.RECOMMENDATION.name)
+        findNavController().navigate(com.example.ui.R.id.searchFragment, args = bundle)
     }
 
     override fun onDestroyView() {

@@ -12,9 +12,9 @@ internal interface RecipeApiInterface {
     @GET("/recipe/")
     fun getRecipe(@Query("id") id: Int): Single<RecipeResponse>
 
-    @GET("/recipes/")
+    @GET("/recipes/category")
     fun getRecipesByCategory(@Query("category") categoryId: Int): Single<List<RecipeResponse>>
 
-    @GET("/recipes/")
+    @GET("/recipes/search")
     fun getRecipesByQuery(@Query("search") query: String): Single<List<RecipeResponse>>
 }
