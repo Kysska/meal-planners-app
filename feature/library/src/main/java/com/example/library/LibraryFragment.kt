@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.library.databinding.FragmentLibraryBinding
 import com.example.library.di.LibraryComponentProvider
 import com.example.ui.adapter.CategoriesAdapter
 import com.example.ui.adapter.RecipesAdapter
+import com.example.ui.screens.RecipeDetailsFragment
 import com.example.ui.view.ViewState
 import javax.inject.Inject
 
@@ -21,7 +23,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     lateinit var libraryViewModel: LibraryViewModel
 
     private val recipesAdapter by lazy {
-        RecipesAdapter()
+        RecipesAdapter { id ->
+            navigateToRecipeDetails(id)
+        }
     }
 
     private val categoriesAdapter by lazy {
@@ -82,6 +86,12 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 is ViewState.Error -> {}
             }
         }
+    }
+
+    private fun navigateToRecipeDetails(id: Int) {
+        val bundle = Bundle()
+        bundle.putInt(RecipeDetailsFragment.KEY_ID, id)
+        findNavController().navigate(com.example.ui.R.id.recipeDetailsFragment, args = bundle)
     }
 
     override fun onDestroyView() {

@@ -10,8 +10,8 @@ object NutritionNetworkMapper : NetworkMapper<Nutrients, NutrientsResponse> {
             id = from.id ?: 0,
             kcal = from.kcal ?: 0,
             carbs = from.carbs ?: 0f,
-            saturates = from.saturates ?: 0f,
-            sugars = from.sugars ?: 0f
+            fats = from.fats ?: 0f,
+            protein = from.proteins ?: 0f
         )
     }
 }

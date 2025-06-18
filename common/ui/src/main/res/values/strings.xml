@@ -11,5 +11,16 @@
     <string name="more_detailed">Подробнее</string>
 
     <string name="date_with_calendar">%1$s 📅</string>
+    <string name="quantity_edit_error_empty">Введите количество</string>
+    <string name="quantity_edit_error_invalid">Введите корректное число</string>
+    <string name="quantity_edit_error_invalid_max">Слишком большое значение</string>
+    <string name="carbs">Углеводы</string>
+    <string name="fats">Жиры</string>
+    <string name="proteins">Протеины</string>
+    <string name="Calories">Калории:</string>
+    <string name="difficult">Сложность</string>
+    <string name="time">Время</string>
+
+    <string name="description">Описание: %s\n\nШаги: %s</string>
 
 </resources>

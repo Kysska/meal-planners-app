@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 apply(from = "../../ktlint.gradle")
@@ -44,9 +45,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.litert.support.api)
+    implementation(project(":core:utils"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.timber)
 
     implementation(project(":data:recipe"))
     implementation(project(":data:product"))
@@ -55,4 +58,16 @@ dependencies {
     // Picasso
     implementation(libs.picasso)
     implementation(libs.picasso.transformations)
+
+    //RxJava
+    implementation(libs.rxjava)
+    implementation(libs.rxjava.android)
+
+    //Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
+    //Navigation
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
 }

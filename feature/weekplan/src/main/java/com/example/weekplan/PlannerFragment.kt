@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.ui.extensions.format
 import com.example.ui.view.ViewState
 import com.example.weekplan.adapter.MealtimesAdapter
@@ -52,8 +53,15 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
         binding.dateTextView.setOnClickListener {
             showDatePicker()
         }
+        binding.addMealtimeButton.setOnClickListener {
+            openMealtimeAddFragment()
+        }
 
         observeViewModel()
+    }
+
+    private fun openMealtimeAddFragment() {
+        findNavController().navigate(com.example.ui.R.id.mealtimeAddFragment)
     }
 
     private fun observeViewModel() {
@@ -61,7 +69,12 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
             when (state) {
                 is ViewState.Loading -> {}
                 is ViewState.Success -> {
-                    mealtimesAdapter.submitList(state.data)
+                    if (state.data.isEmpty()) {
+                        binding.empty.visibility = View.VISIBLE
+                    } else {
+                        binding.empty.visibility = View.GONE
+                        mealtimesAdapter.submitList(state.data)
+                    }
                 }
                 is ViewState.Error -> {}
             }

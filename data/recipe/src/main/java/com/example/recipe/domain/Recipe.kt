@@ -20,7 +20,7 @@ data class Recipe(
 data class Nutrients(
     val id: Int = UUID.randomUUID().hashCode(),
     val kcal: Int = 0,
-    val saturates: Float = 0f,
+    val fats: Float = 0f,
     val carbs: Float = 0f,
-    val sugars: Float = 0f
+    val protein: Float = 0f
 )

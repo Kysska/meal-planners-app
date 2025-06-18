@@ -8,7 +8,7 @@ import com.example.recipe.domain.Recipe
 import com.example.ui.databinding.RecipeItemBinding
 import com.example.ui.extensions.loadImage
 
-class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
+class RecipesAdapter(private val onClickListener: (id: Int) -> Unit) : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
 
     private var recipes: List<Recipe> = emptyList()
 
@@ -20,6 +20,7 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
             binding.imageFood.loadImage(recipe.image)
 
             binding.tvRecipeCount.setOnClickListener {
+                onClickListener(recipe.id)
             }
         }
     }

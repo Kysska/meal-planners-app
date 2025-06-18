@@ -9,23 +9,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.meal_planners_app.databinding.ActivityMainBinding
 import com.example.meal_planners_app.di.DiProvider
 import com.example.meal_planners_app.di.SubComponents
-import com.example.mealtime.domain.MealtimeRepository
-import com.example.product.domain.ProductRepository
-import com.example.recipe.domain.RecipeRepository
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), SubComponents {
 
     private lateinit var binding: ActivityMainBinding
-
-    @Inject
-    lateinit var productRepository: ProductRepository
-
-    @Inject
-    lateinit var mealtimeRepository: MealtimeRepository
-
-    @Inject
-    lateinit var recipeRepository: RecipeRepository
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {

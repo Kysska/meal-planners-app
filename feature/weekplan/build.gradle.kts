@@ -57,8 +57,14 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
+    //Navigation
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
     implementation(project(":data:mealtime"))
     implementation(project(":data:recipe"))
+    implementation(project(":data:category"))
+    implementation(project(":data:product"))
     implementation(project(":core:utils"))
     implementation(project(":common:ui"))
 }

@@ -33,9 +33,9 @@ data class NutrientsResponse(
     @SerializedName("kcal")
     val kcal: Int?,
     @SerializedName("saturates")
-    val saturates: Float?,
+    val fats: Float?,
     @SerializedName("carbs")
     val carbs: Float?,
     @SerializedName("sugars")
-    val sugars: Float?
+    val proteins: Float?
 )

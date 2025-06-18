@@ -35,10 +35,10 @@ data class NutrientsDbEntity(
     val id: Int,
     @ColumnInfo("kcal")
     val kcal: Int,
-    @ColumnInfo("saturates")
-    val saturates: Float,
+    @ColumnInfo("fats")
+    val fats: Float,
     @ColumnInfo("carbs")
     val carbs: Float,
-    @ColumnInfo("sugars")
-    val sugars: Float
+    @ColumnInfo("protein")
+    val proteins: Float
 )

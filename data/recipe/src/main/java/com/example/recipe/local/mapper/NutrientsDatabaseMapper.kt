@@ -9,8 +9,8 @@ object NutrientsDatabaseMapper : DatabaseMapper<Nutrients, NutrientsDbEntity> {
         return NutrientsDbEntity(
             id = from.id,
             kcal = from.kcal,
-            saturates = from.saturates,
-            sugars = from.sugars,
+            fats = from.fats,
+            proteins = from.protein,
             carbs = from.carbs
         )
     }
@@ -19,8 +19,8 @@ object NutrientsDatabaseMapper : DatabaseMapper<Nutrients, NutrientsDbEntity> {
         return Nutrients(
             id = to.id,
             kcal = to.kcal,
-            sugars = to.sugars,
-            saturates = to.saturates,
+            protein = to.proteins,
+            fats = to.fats,
             carbs = to.carbs
         )
     }

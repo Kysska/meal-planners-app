@@ -77,4 +77,5 @@ dependencies {
     implementation(project(":feature:weekplan"))
     implementation(project(":core:utils"))
     implementation(project(":core:database"))
+    implementation(project(":common:ui"))
 }
