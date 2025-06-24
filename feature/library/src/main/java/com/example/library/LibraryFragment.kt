@@ -25,9 +25,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     lateinit var libraryViewModel: LibraryViewModel
 
     private val recipesAdapter by lazy {
-        RecipesAdapter { id ->
+        RecipesAdapter(onDetailClickListener = { id ->
             navigateToRecipeDetails(id)
-        }
+        })
     }
 
     private val categoriesAdapter by lazy {
@@ -38,7 +38,8 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragmentComponent = (requireActivity() as LibraryComponentProvider).provideHomeComponent()
+        val fragmentComponent =
+            (requireActivity() as LibraryComponentProvider).provideHomeComponent()
         fragmentComponent.inject(this)
     }
 
@@ -78,6 +79,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 is ViewState.Success -> {
                     categoriesAdapter.submitList(state.data)
                 }
+
                 is ViewState.Error -> {}
             }
         }
@@ -90,6 +92,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 is ViewState.Success -> {
                     recipesAdapter.submitList(state.data)
                 }
+
                 is ViewState.Error -> {}
             }
         }

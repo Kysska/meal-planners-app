@@ -9,6 +9,7 @@ import com.example.mealtime.domain.MealtimeType
 import com.example.ui.databinding.HeaderMealtimeItemBinding
 import com.example.ui.databinding.MealtimeItemBinding
 import com.example.ui.extensions.loadImage
+import com.example.weekplan.R
 
 class MealtimesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -20,6 +21,11 @@ class MealtimesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(mealtime: Mealtime) {
             binding.mealImage.loadImage(mealtime.recipe.image)
             binding.itemMealName.text = mealtime.recipe.name
+            binding.itemMealQuantity.text = binding.root.context.getString(
+                R.string.mealtime_quantity,
+                mealtime.quantity.toString(),
+                mealtime.gram.toString()
+            )
 
             binding.editIcon.setOnClickListener {
             }
@@ -84,7 +90,6 @@ class MealtimesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         const val HEADER_TYPE = 0
         const val MEAL_TYPE = 1
-        private const val DATE_CALENDAR_SYMBOL = "\uD83D\uDCC5"
     }
 }
 

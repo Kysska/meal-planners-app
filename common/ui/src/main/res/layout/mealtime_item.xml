@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/material_margin_normal"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    android:backgroundTint="@color/background_cards">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,18 +26,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/material_margin_normal"
             tools:text="Name"
-            style="@style/BaseLargeTextStyle"
+            style="@style/BaseMediumTextStyle"
             app:layout_constraintStart_toEndOf="@id/meal_image"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_meal_quantity"
+            style="@style/BaseMediumTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_margin_normal"
+            app:layout_constraintStart_toEndOf="@id/meal_image"
+            app:layout_constraintTop_toBottomOf="@id/item_meal_name"
+            tools:text="1x150гр." />
 
         <ImageButton
             android:id="@+id/edit_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@null"
-            android:src="@drawable/baseline_edit_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/baseline_delete_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

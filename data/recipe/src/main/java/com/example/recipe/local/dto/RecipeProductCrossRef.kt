@@ -18,5 +18,5 @@ data class RecipeProductCrossRef(
     @ColumnInfo("recipe_id")
     val recipeId: Int,
     @ColumnInfo("product_id")
-    val productId: Int,
+    val productId: Int
 )

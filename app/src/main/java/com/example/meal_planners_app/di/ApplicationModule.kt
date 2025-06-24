@@ -32,7 +32,7 @@ import dagger.Module
         CategoryLocalDataModule::class,
         MealtimeLocalDataModule::class,
         MealtimeRepositoryModule::class,
-        DatabaseModule::class,
+        DatabaseModule::class
     ]
 )
 class ApplicationModule

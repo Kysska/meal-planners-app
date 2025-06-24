@@ -12,4 +12,7 @@
     <string name="save_button">Сохранить</string>
     <string name="fragment_planner_button">Отметить приём пищи</string>
     <string name="mealtime_tv_recipe">Выбрать рецепт:</string>
+    <string name="choose_category">Выбирите категорию</string>
+    <string name="choose_recipe">Выбирите рецепт</string>
+    <string name="mealtime_quantity">%1$sx%2$sгр.</string>
 </resources>

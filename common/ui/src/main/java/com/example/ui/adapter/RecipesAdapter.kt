@@ -8,7 +8,7 @@ import com.example.recipe.domain.Recipe
 import com.example.ui.databinding.RecipeItemBinding
 import com.example.ui.extensions.loadImage
 
-class RecipesAdapter(private val onClickListener: (id: Int) -> Unit) : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
+class RecipesAdapter(private val onDetailClickListener: (id: Int) -> Unit, private val onRecipeClickListener: (recipe: Recipe) -> Unit = {}) : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
 
     private var recipes: List<Recipe> = emptyList()
 
@@ -16,11 +16,15 @@ class RecipesAdapter(private val onClickListener: (id: Int) -> Unit) : RecyclerV
 
         fun bind(recipe: Recipe) {
             binding.tvTitle.text = recipe.name
-            binding.tvRating.text = recipe.times
+            binding.tvTime.text = recipe.times
             binding.imageFood.loadImage(recipe.image)
 
-            binding.tvRecipeCount.setOnClickListener {
-                onClickListener(recipe.id)
+            binding.tvRecipeDetail.setOnClickListener {
+                onDetailClickListener(recipe.id)
+            }
+
+            binding.root.setOnClickListener {
+                onRecipeClickListener(recipe)
             }
         }
     }

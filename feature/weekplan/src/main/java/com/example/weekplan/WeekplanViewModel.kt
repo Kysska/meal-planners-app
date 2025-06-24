@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.example.mealtime.domain.Mealtime
 import com.example.mealtime.domain.MealtimeRepository
 import com.example.mealtime.domain.MealtimeType
-import com.example.recipe.domain.Recipe
+import com.example.recipe.domain.RecipeRepository
 import com.example.ui.view.ViewState
+import com.example.ui.vo.RecipeView
 import com.example.utils.util.applySchedulers
 import com.example.weekplan.adapter.MealtimeListItem
 import io.reactivex.disposables.CompositeDisposable
@@ -15,12 +16,16 @@ import java.util.Date
 import timber.log.Timber
 
 class WeekplanViewModel(
-    private val mealtimeRepository: MealtimeRepository
+    private val mealtimeRepository: MealtimeRepository,
+    private val recipeRepository: RecipeRepository
 ) : ViewModel() {
 
     private val _mealtimesState = MutableLiveData<ViewState<List<MealtimeListItem>>>()
     val mealtimesState: LiveData<ViewState<List<MealtimeListItem>>>
         get() = _mealtimesState
+
+    private val _selectedRecipe = MutableLiveData<RecipeView?>()
+    val selectedRecipe: LiveData<RecipeView?> = _selectedRecipe
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -41,14 +46,33 @@ class WeekplanViewModel(
         )
     }
 
-    fun addCreatedMealtime(name: String, quantity: Int, gram: Int) {
+    fun addCreatedMealtime(type: MealtimeType, quantity: Int, gram: Int, recipeId: Int, date: Date) {
         compositeDisposable.add(
-            mealtimeRepository.insertMealtime(Mealtime(recipe = Recipe(name = name), quantity = quantity, gram = gram))
+            recipeRepository.getRecipeById(recipeId)
+                .flatMapCompletable { recipe ->
+                    mealtimeRepository.insertMealtime(
+                        Mealtime(
+                            recipe = recipe,
+                            quantity = quantity,
+                            gram = gram,
+                            type = type,
+                            date = date
+                        )
+                    )
+                }
                 .applySchedulers()
                 .subscribe({}, { error ->
                     Timber.tag(WEEKPLAN_VIEW_MODEL).e(error)
                 })
         )
+    }
+
+    fun setSelectedRecipe(recipe: RecipeView?) {
+        _selectedRecipe.value = recipe
+    }
+
+    fun removeSelectedRecipe() {
+        _selectedRecipe.value = null
     }
 
     private fun groupMealsByCategory(meals: List<Mealtime>): List<MealtimeListItem> {

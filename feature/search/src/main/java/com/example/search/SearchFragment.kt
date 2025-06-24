@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.recipe.domain.Recipe
 import com.example.search.databinding.FragmentSearchBinding
 import com.example.search.di.SearchComponentProvider
 import com.example.ui.adapter.RecipesAdapter
 import com.example.ui.screens.RecipeDetailsFragment
+import com.example.ui.utils.SearchMode
 import com.example.ui.utils.SearchTypeData
 import com.example.ui.view.ViewState
+import com.example.ui.vo.RecipeView
 import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -24,9 +27,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     lateinit var searchViewModel: SearchViewModel
 
     private val recipesAdapter by lazy {
-        RecipesAdapter { id ->
-            navigateToRecipeDetails(id)
-        }
+        RecipesAdapter(onDetailClickListener = { id -> navigateToRecipeDetails(id) }, onRecipeClickListener = { recipe -> sendRecipe(recipe) })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,10 +85,18 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                         }
                     }
                 }
-
                 is ViewState.Error -> {}
                 else -> {}
             }
+        }
+    }
+
+    private fun sendRecipe(recipe: Recipe) {
+        if (getSearchMode() == SearchMode.EDIT) {
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_RECIPE_VIEW, RecipeView(id = recipe.id, name = recipe.name, image = recipe.image, times = recipe.times))
+            parentFragmentManager.setFragmentResult(KEY_RECIPE_SELECTION, bundle)
+            findNavController().navigateUp()
         }
     }
 
@@ -98,6 +107,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun getIdCategory(): Int {
         return requireArguments().getInt(KEY_ID_CATEGORY)
+    }
+
+    private fun getSearchMode(): SearchMode {
+        val searchMode = requireArguments().getString(KEY_SEARCH_MODE, SearchMode.VIEW_ONLY.name)
+        return SearchMode.valueOf(searchMode)
     }
 
     private fun navigateToRecipeDetails(id: Int) {
@@ -113,6 +127,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     companion object {
         const val KEY_STRING = "title"
+        const val KEY_SEARCH_MODE = "searchMode"
+        const val KEY_RECIPE_VIEW = "recipeView"
+        const val KEY_RECIPE_SELECTION = "recipeSelection"
         const val KEY_ID_CATEGORY = "id"
         private const val SPAN_COUNT = 2
     }

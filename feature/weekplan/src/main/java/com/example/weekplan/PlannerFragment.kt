@@ -11,8 +11,6 @@ import com.example.ui.view.ViewState
 import com.example.weekplan.adapter.MealtimesAdapter
 import com.example.weekplan.databinding.FragmentPlannerBinding
 import com.example.weekplan.di.WeekplanComponentProvider
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.Date
 import javax.inject.Inject
@@ -47,6 +45,7 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter = mealtimesAdapter
 
         updateDateText()
 
@@ -61,7 +60,9 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
     }
 
     private fun openMealtimeAddFragment() {
-        findNavController().navigate(com.example.ui.R.id.mealtimeAddFragment)
+        val bundle = Bundle()
+        bundle.putLong(MealtimeAddFragment.KEY_DATE, selectedDate.time)
+        findNavController().navigate(com.example.ui.R.id.mealtimeAddFragment, bundle)
     }
 
     private fun observeViewModel() {
@@ -89,19 +90,16 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
     }
 
     private fun showDatePicker() {
-        val constraintsBuilder = CalendarConstraints.Builder().setValidator(
-            DateValidatorPointForward.now())
-
         MaterialDatePicker.Builder.datePicker()
             .setTitleText(getString(R.string.planner_fragment_picker))
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-            .setCalendarConstraints(constraintsBuilder.build())
             .build()
             .run {
                 addOnPositiveButtonClickListener { dateInMillis ->
                     selectedDate = Date(dateInMillis)
                     updateDateText()
 
+                    mealtimesAdapter.submitList(emptyList())
                     weekplanViewModel.loadMealtimesByDate(selectedDate)
                 }
                 show(this@PlannerFragment.requireActivity().supportFragmentManager, DATE_PICKER_TAG)
