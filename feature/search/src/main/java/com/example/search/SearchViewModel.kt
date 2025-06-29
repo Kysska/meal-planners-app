@@ -20,8 +20,6 @@ class SearchViewModel(
     private val compositeDisposable = CompositeDisposable()
 
     fun loadRecipes() {
-        if (_recommendationState.value is ViewState.Success) return
-
         _recommendationState.value = ViewState.Loading
         compositeDisposable.add(
             recipeRepository.getRecipes(LIMIT_RECOMMENDATION)
@@ -39,11 +37,26 @@ class SearchViewModel(
     }
 
     fun loadRecipesByCategory(id: Int) {
-        if (_recommendationState.value is ViewState.Success) return
-
         _recommendationState.value = ViewState.Loading
         compositeDisposable.add(
             recipeRepository.getRecipeByCategory(id)
+                .applySchedulers()
+                .subscribe({ recipes ->
+                    _recommendationState.value = if (recipes.isNotEmpty()) {
+                        ViewState.Success(recipes)
+                    } else {
+                        ViewState.Success(emptyList())
+                    }
+                }, { error ->
+                    _recommendationState.value = ViewState.Error(error)
+                })
+        )
+    }
+
+    fun loadRecipesByQuery(query: String) {
+        _recommendationState.value = ViewState.Loading
+        compositeDisposable.add(
+            recipeRepository.getRecipeByQuery(query)
                 .applySchedulers()
                 .subscribe({ recipes ->
                     _recommendationState.value = if (recipes.isNotEmpty()) {

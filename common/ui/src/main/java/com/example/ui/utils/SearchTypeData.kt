@@ -2,7 +2,8 @@ package com.example.ui.utils
 
 enum class SearchTypeData {
     RECOMMENDATION,
-    CATEGORY
+    CATEGORY,
+    SEARCH
 }
 
 enum class SearchMode {

@@ -17,27 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardSearch"
-        android:layout_width="0dp"
+    <com.example.ui.view.SearchBar
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_margin="@dimen/material_margin_normal"
         android:layout_marginTop="@dimen/material_margin_normal"
-        app:cardCornerRadius="@dimen/corner_size"
-        android:backgroundTint="@color/background_cards"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle">
-
-        <EditText
-            android:id="@+id/etSearch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@color/background_cards"
-            android:hint="@string/hint_text"
-            android:paddingStart="@dimen/material_padding_normal" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
 
     <TextView
         android:id="@+id/tvCategories"
@@ -47,7 +34,7 @@
         android:text="@string/library_categories_title"
         style="@style/BaseMediumTextStyle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scrollCategories"

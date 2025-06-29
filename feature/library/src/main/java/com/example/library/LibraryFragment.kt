@@ -9,14 +9,16 @@ import androidx.navigation.fragment.findNavController
 import com.example.library.databinding.FragmentLibraryBinding
 import com.example.library.di.LibraryComponentProvider
 import com.example.search.SearchFragment
+import com.example.search.SearchFragment.Companion.KEY_SEARCH
 import com.example.ui.adapter.CategoriesAdapter
 import com.example.ui.adapter.RecipesAdapter
 import com.example.ui.screens.RecipeDetailsFragment
 import com.example.ui.utils.SearchTypeData
+import com.example.ui.view.SearchBar
 import com.example.ui.view.ViewState
 import javax.inject.Inject
 
-class LibraryFragment : Fragment(R.layout.fragment_library) {
+class LibraryFragment : Fragment(R.layout.fragment_library), SearchBar.OnSearchActionListener, SearchBar.OnClearSearchClickListener {
 
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +34,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
     private val categoriesAdapter by lazy {
         CategoriesAdapter { id ->
-            navigateToSearchFragment(SearchTypeData.CATEGORY, id)
+            navigateToSearchFragmentCategoryType(id)
         }
     }
 
@@ -49,6 +51,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
+        binding.searchBar.setOnSearchActionListener(this)
         return binding.root
     }
 
@@ -58,7 +61,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         binding.scrollCategories.adapter = categoriesAdapter
         binding.rvRecommendations.adapter = recipesAdapter
         binding.tvSeeAllRecommendation.setOnClickListener {
-            navigateToSearchFragment(SearchTypeData.RECOMMENDATION)
+            navigateToSearchFragmentRecommendationType()
         }
 
         observeViewModel()
@@ -104,20 +107,41 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         findNavController().navigate(com.example.ui.R.id.recipeDetailsFragment, args = bundle)
     }
 
-    private fun navigateToSearchFragment(searchType: SearchTypeData, id: Int = 0) {
+    private fun navigateToSearchFragmentCategoryType(id: Int = 0) {
         val bundle = Bundle()
-        bundle.putString(SearchFragment.KEY_STRING, searchType.name)
-        if (searchType == SearchTypeData.CATEGORY) {
-            bundle.putInt(SearchFragment.KEY_ID_CATEGORY, id)
-        }
+        bundle.putString(SearchFragment.KEY_STRING, SearchTypeData.CATEGORY.name)
+        bundle.putInt(SearchFragment.KEY_ID_CATEGORY, id)
         findNavController().navigate(com.example.ui.R.id.searchFragment, args = bundle)
+    }
+
+    private fun navigateToSearchFragmentRecommendationType() {
+        val bundle = Bundle()
+        bundle.putString(SearchFragment.KEY_STRING, SearchTypeData.RECOMMENDATION.name)
+        findNavController().navigate(com.example.ui.R.id.searchFragment, args = bundle)
+    }
+
+    private fun navigateToSearchFragmentSearchType(query: String) {
+        val bundle = Bundle()
+        bundle.putString(SearchFragment.KEY_STRING, SearchTypeData.SEARCH.name)
+        bundle.putString(SearchFragment.KEY_SEARCH, query)
+        findNavController().navigate(com.example.ui.R.id.searchFragment, args = bundle)
+    }
+
+    override fun onSearchSubmitted(query: String) {
+        navigateToSearchFragmentSearchType(query)
+    }
+
+    override fun onClearButtonClicked() {
+        binding.searchBar.clear()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.searchBar.clear()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
     }
 }

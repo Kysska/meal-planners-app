@@ -8,6 +8,7 @@
     <string name="library_heading_title">Что вы хотели бы приготовить сегодня?</string>
     <string name="library_categories_title">Категории</string>
     <string name="library_recommendation_title">Рекомендации</string>
+    <string name="library_search_title">Поиск</string>
     <string name="more_detailed">Подробнее</string>
 
     <string name="date_with_calendar">%1$s 📅</string>

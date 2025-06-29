@@ -14,11 +14,12 @@ import com.example.ui.adapter.RecipesAdapter
 import com.example.ui.screens.RecipeDetailsFragment
 import com.example.ui.utils.SearchMode
 import com.example.ui.utils.SearchTypeData
+import com.example.ui.view.SearchBar
 import com.example.ui.view.ViewState
 import com.example.ui.vo.RecipeView
 import javax.inject.Inject
 
-class SearchFragment : Fragment(R.layout.fragment_search) {
+class SearchFragment : Fragment(R.layout.fragment_search), SearchBar.OnSearchActionListener, SearchBar.OnClearSearchClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -43,6 +44,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.searchBar.setOnClearButtonClickListener(this)
+        binding.searchBar.setOnSearchActionListener(this)
         return binding.root
     }
 
@@ -66,6 +69,18 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     tvRecommendation.text =
                         requireContext().getString(com.example.ui.R.string.library_recommendation_title)
                     searchViewModel.loadRecipes()
+                }
+
+                SearchTypeData.SEARCH -> {
+                    tvRecommendation.text =
+                        requireContext().getString(com.example.ui.R.string.library_search_title)
+                    val searchText = getSearch()
+                    if (searchText.isNotEmpty()) {
+                        binding.searchBar.setText(searchText)
+                        searchViewModel.loadRecipesByQuery(searchText)
+                    } else {
+                        searchViewModel.loadRecipes()
+                    }
                 }
             }
         }
@@ -114,15 +129,36 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         return SearchMode.valueOf(searchMode)
     }
 
+    private fun getSearch(): String {
+        return requireArguments().getString(KEY_SEARCH) ?: ""
+    }
+
     private fun navigateToRecipeDetails(id: Int) {
         val bundle = Bundle()
         bundle.putInt(RecipeDetailsFragment.KEY_ID, id)
         findNavController().navigate(com.example.ui.R.id.recipeDetailsFragment, args = bundle)
     }
 
+    override fun onClearButtonClicked() {
+        binding.searchBar.clear()
+    }
+
+    override fun onSearchSubmitted(query: String) {
+        if (query.isNotEmpty()) {
+            searchViewModel.loadRecipesByQuery(query)
+        } else {
+            searchViewModel.loadRecipes()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.searchBar.clear()
     }
 
     companion object {
@@ -131,6 +167,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         const val KEY_RECIPE_VIEW = "recipeView"
         const val KEY_RECIPE_SELECTION = "recipeSelection"
         const val KEY_ID_CATEGORY = "id"
+        const val KEY_SEARCH = "search"
         private const val SPAN_COUNT = 2
     }
 }
