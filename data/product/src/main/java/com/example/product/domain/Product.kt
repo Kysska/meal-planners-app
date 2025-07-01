@@ -9,5 +9,6 @@ data class Product(
     val name: String = "",
     val image: String = "",
     val category: Category = Category(),
-    val date: Date? = null
+    val date: Date = Date(),
+    val selected: Boolean = false
 )

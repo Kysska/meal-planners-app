@@ -23,7 +23,7 @@ import java.util.Date
 data class MealtimeDbEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "recipe_id")
     val recipeId: Int,
     @ColumnInfo(name = "quantity")

@@ -39,4 +39,14 @@
         android:id="@+id/searchFragment"
         android:name="com.example.search.SearchFragment"
         android:label="MealtimeAddFragment" />
+
+    <fragment
+        android:id="@+id/shoppingFragment"
+        android:name="com.example.shoppinglist.ProductListFragment"
+        android:label="ShoppingListFragment" />
+
+    <fragment
+        android:id="@+id/productAddFragment"
+        android:name="com.example.shoppinglist.ProductCreateFragment"
+        android:label="ShoppingListFragment" />
 </navigation>

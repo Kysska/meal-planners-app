@@ -11,7 +11,6 @@ import java.util.Date
 object MealtimeDatabaseMapper : DatabaseMapper<Mealtime, MealtimeDbEntity> {
     override fun map(from: Mealtime): MealtimeDbEntity {
         return MealtimeDbEntity(
-            id = from.id,
             quantity = from.quantity,
             recipeId = from.recipe.id,
             date = from.date,

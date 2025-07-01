@@ -10,7 +10,6 @@ import com.example.utils.mapper.DatabaseMapper
 object RecipeDatabaseMapper : DatabaseMapper<Recipe, RecipeDbEntity> {
     override fun map(from: Recipe): RecipeDbEntity {
         return RecipeDbEntity(
-            id = from.id,
             name = from.name,
             image = from.image,
             description = from.description,

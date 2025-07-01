@@ -8,7 +8,7 @@ import com.example.product.domain.Product
 import com.example.ui.databinding.ProductItemBinding
 import com.example.ui.extensions.loadImage
 
-class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
+class ProductsAdapter(private val onItemClickListener: (product: Product) -> Unit) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     private var products: List<Product> = emptyList()
 
@@ -17,6 +17,10 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>(
         fun bind(product: Product) {
             binding.itemMealName.text = product.name
             binding.mealImage.loadImage(product.image)
+
+            binding.root.setOnClickListener {
+                onItemClickListener(product)
+            }
         }
     }
 

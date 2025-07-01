@@ -10,7 +10,7 @@ import com.example.category.local.dto.CategoryDbEntity
 data class RecipeDbEntity(
     @PrimaryKey
     @ColumnInfo("id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo("image")
     val image: String,
     @ColumnInfo("name")
@@ -32,7 +32,7 @@ data class RecipeDbEntity(
 data class NutrientsDbEntity(
     @PrimaryKey
     @ColumnInfo("id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo("kcal")
     val kcal: Int,
     @ColumnInfo("fats")

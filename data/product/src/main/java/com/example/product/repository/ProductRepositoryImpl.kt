@@ -7,6 +7,7 @@ import com.example.product.repository.source.RemoteProductDataSource
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.Date
 import timber.log.Timber
 
 internal class ProductRepositoryImpl(
@@ -66,16 +67,12 @@ internal class ProductRepositoryImpl(
             }
     }
 
-    override fun getProductsInShopList(): Observable<List<Product>> {
-        return localProductDataSource.getProductsInShopList()
+    override fun getProductsInShopCart(date: Date): Observable<List<Product>> {
+        return localProductDataSource.getProductsInShopCart(date)
     }
 
-    override fun getProductsInShopCart(): Observable<List<Product>> {
-        return localProductDataSource.getProductsInShopCart()
-    }
-
-    override fun moveProductInShopList(product: Product): Completable {
-        return localProductDataSource.moveProductInShopList(product)
+    override fun selectedProductInShopCart(product: Product): Completable {
+        return localProductDataSource.selectedProductInShopCart(product)
     }
 
     override fun addProductInShopCart(product: Product): Completable {

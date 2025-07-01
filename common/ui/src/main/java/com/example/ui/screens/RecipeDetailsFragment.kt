@@ -21,7 +21,7 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
     private val binding get() = _binding!!
 
     private val productsAdapter by lazy {
-        ProductsAdapter()
+        ProductsAdapter {}
     }
 
     @Inject

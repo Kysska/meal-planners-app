@@ -22,7 +22,7 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
     private var selectedDate: Date = Date()
     private val mealtimesAdapter by lazy {
-        return@lazy MealtimesAdapter()
+        MealtimesAdapter()
     }
 
     @Inject
@@ -57,11 +57,12 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
         }
 
         observeViewModel()
+        weekplanViewModel.loadMealtimesByDate(selectedDate)
     }
 
     private fun openMealtimeAddFragment() {
         val bundle = Bundle()
-        bundle.putLong(MealtimeAddFragment.KEY_DATE, selectedDate.time)
+        bundle.putLong(MealtimeCreateFragment.KEY_DATE, selectedDate.time)
         findNavController().navigate(com.example.ui.R.id.mealtimeAddFragment, bundle)
     }
 
@@ -81,8 +82,6 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
                 else -> {}
             }
         }
-
-        weekplanViewModel.loadMealtimesByDate(selectedDate)
     }
 
     private fun updateDateText() {
@@ -91,7 +90,7 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
     private fun showDatePicker() {
         MaterialDatePicker.Builder.datePicker()
-            .setTitleText(getString(R.string.planner_fragment_picker))
+            .setTitleText(getString(com.example.ui.R.string.planner_fragment_picker))
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
             .run {

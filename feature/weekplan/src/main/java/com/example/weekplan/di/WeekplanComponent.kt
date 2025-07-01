@@ -1,6 +1,6 @@
 package com.example.weekplan.di
 
-import com.example.weekplan.MealtimeAddFragment
+import com.example.weekplan.MealtimeCreateFragment
 import com.example.weekplan.PlannerFragment
 import dagger.Subcomponent
 import javax.inject.Scope
@@ -13,7 +13,7 @@ annotation class FeatureScope
 @Subcomponent(modules = [WeekplanModule::class])
 interface WeekplanComponent {
     fun inject(homeFragment: PlannerFragment)
-    fun inject(addMealtimeFragment: MealtimeAddFragment)
+    fun inject(addMealtimeFragment: MealtimeCreateFragment)
 
     @Subcomponent.Factory
     interface Factory {

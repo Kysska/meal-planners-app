@@ -10,7 +10,7 @@
         android:icon="@drawable/baseline_view_week_24"
         android:title="@string/planner_menu"/>
     <item
-        android:id="@+id/feedbackFragment"
+        android:id="@+id/shoppingFragment"
         android:icon="@drawable/baseline_add_shopping_cart_24"
         android:title="@string/shop_menu"/>
     <item

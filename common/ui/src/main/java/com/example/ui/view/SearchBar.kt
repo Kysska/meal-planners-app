@@ -35,6 +35,10 @@ class SearchBar @JvmOverloads constructor(
         binding.searchEditText.setText(text)
     }
 
+    fun getText(): String {
+        return binding.searchEditText.text.toString()
+    }
+
     fun clear() {
         binding.searchEditText.setText("")
     }

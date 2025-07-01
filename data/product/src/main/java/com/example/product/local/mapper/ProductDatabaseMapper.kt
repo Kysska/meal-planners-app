@@ -9,7 +9,6 @@ import java.util.Date
 object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
     override fun map(from: Product): ProductDbEntity {
         return ProductDbEntity(
-            id = from.id,
             name = from.name,
             image = from.image,
             category = CategoryDatabaseMapper.map(from.category)
@@ -25,12 +24,13 @@ object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
         )
     }
 
-    fun reverseMap(to: ProductDbEntity, date: Date?): Product {
+    fun reverseMap(to: ProductDbEntity, date: Date, selected: Boolean): Product {
         return Product(
             id = to.id,
             name = to.name,
             image = to.image,
             date = date,
+            selected = selected,
             category = CategoryDatabaseMapper.reverseMap(to.category)
         )
     }

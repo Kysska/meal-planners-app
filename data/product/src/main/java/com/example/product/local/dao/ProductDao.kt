@@ -12,6 +12,7 @@ import com.example.product.local.dto.ProductWithDate
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.Date
 
 @Dao
 interface ProductDao {
@@ -27,17 +28,13 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE LOWER(name) LIKE '%' || LOWER(:query) || '%' ")
     fun getProductByQuery(query: String): Single<List<ProductDbEntity>>
 
-    @Query("SELECT * FROM products_in_cart ORDER BY date DESC")
+    @Query("SELECT * FROM products_in_cart WHERE date = :date")
     @Transaction
-    fun getProductsInShopList(): Observable<List<ProductWithDate>>
-
-    @Query("SELECT * FROM products_in_cart WHERE date IS NULL")
-    @Transaction
-    fun getProductsInShopCart(): Observable<List<ProductWithDate>>
+    fun getProductsInShopCart(date: Date): Observable<List<ProductWithDate>>
 
     @Update
     @Transaction
-    fun moveProductInShopList(product: ProductInCartDbEntity): Completable
+    fun selectedProductInShopCart(product: ProductInCartDbEntity): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction

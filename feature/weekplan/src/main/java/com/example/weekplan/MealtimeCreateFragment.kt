@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.search.SearchFragment
@@ -22,7 +21,7 @@ import com.google.android.material.chip.Chip
 import java.util.Date
 import javax.inject.Inject
 
-class MealtimeAddFragment : Fragment(R.layout.fragment_mealtime_add) {
+class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
 
     private var _binding: FragmentMealtimeAddBinding? = null
     private val binding get() = _binding!!

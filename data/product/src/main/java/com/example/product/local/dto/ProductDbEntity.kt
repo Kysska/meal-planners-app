@@ -10,7 +10,7 @@ import com.example.category.local.dto.CategoryDbEntity
 data class ProductDbEntity(
     @PrimaryKey
     @ColumnInfo("id")
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo("name")
     val name: String,
     @ColumnInfo("image")
