@@ -7,6 +7,7 @@ import com.example.utils.mapper.DatabaseMapper
 object NutrientsDatabaseMapper : DatabaseMapper<Nutrients, NutrientsDbEntity> {
     override fun map(from: Nutrients): NutrientsDbEntity {
         return NutrientsDbEntity(
+            id = from.id,
             kcal = from.kcal,
             fats = from.fats,
             proteins = from.protein,

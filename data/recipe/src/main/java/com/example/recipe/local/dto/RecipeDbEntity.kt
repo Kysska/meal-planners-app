@@ -30,7 +30,7 @@ data class RecipeDbEntity(
 )
 
 data class NutrientsDbEntity(
-    @PrimaryKey
+    @PrimaryKey()
     @ColumnInfo("id")
     val id: Int = 0,
     @ColumnInfo("kcal")

@@ -12,6 +12,8 @@
     <string name="more_detailed">Подробнее</string>
 
     <string name="date_with_calendar">%1$s 📅</string>
+    <string name="kcal_norma">"%d / %d"</string>
+    <string name="nutrients_norma">"%.0f / %d"</string>
     <string name="quantity_edit_error_empty">Введите количество</string>
     <string name="quantity_edit_error_invalid">Введите корректное число</string>
     <string name="quantity_edit_error_invalid_max">Слишком большое значение</string>

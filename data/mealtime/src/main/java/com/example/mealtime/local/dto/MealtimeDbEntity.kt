@@ -21,7 +21,7 @@ import java.util.Date
     indices = [Index("recipe_id")]
 )
 data class MealtimeDbEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0,
     @ColumnInfo(name = "recipe_id")

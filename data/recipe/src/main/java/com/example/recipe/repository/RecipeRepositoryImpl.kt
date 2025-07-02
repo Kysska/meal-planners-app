@@ -18,6 +18,10 @@ internal class RecipeRepositoryImpl(
                 Completable.merge(
                     networkData.map { recipe ->
                         addRecipe(recipe)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save recipe: $recipe")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }
@@ -41,6 +45,10 @@ internal class RecipeRepositoryImpl(
                 Completable.merge(
                     networkData.map { recipe ->
                         addRecipe(recipe)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save recipe: $recipe")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }
@@ -56,6 +64,10 @@ internal class RecipeRepositoryImpl(
                 Completable.merge(
                     networkData.map { recipe ->
                         addRecipe(recipe)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save recipe: $recipe")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }

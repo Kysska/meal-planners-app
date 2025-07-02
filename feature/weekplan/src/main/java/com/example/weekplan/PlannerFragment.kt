@@ -58,6 +58,10 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
         observeViewModel()
         weekplanViewModel.loadMealtimesByDate(selectedDate)
+        weekplanViewModel.getDailyFatsSummary(selectedDate)
+        weekplanViewModel.getDailyKcalSummary(selectedDate)
+        weekplanViewModel.getDailyCarbsSummary(selectedDate)
+        weekplanViewModel.getDailyProteinSummary(selectedDate)
     }
 
     private fun openMealtimeAddFragment() {
@@ -82,6 +86,34 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
                 else -> {}
             }
         }
+
+        weekplanViewModel.dailyKcal.observe(viewLifecycleOwner) { kcal ->
+            binding.apply {
+                analytics.tvKcal.text = requireActivity().getString(com.example.ui.R.string.kcal_norma, kcal, AVG_KCAL_DAILY)
+                analytics.circularProgress.progress = kcal / AVG_KCAL_DAILY
+            }
+        }
+
+        weekplanViewModel.dailyProteins.observe(viewLifecycleOwner) { proteins ->
+            binding.apply {
+                analytics.tvProteins.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, proteins, AVG_PROTEINS_DAILY)
+                analytics.linearProgressProtein.progress = (proteins / AVG_PROTEINS_DAILY).toInt()
+            }
+        }
+
+        weekplanViewModel.dailyFats.observe(viewLifecycleOwner) { fats ->
+            binding.apply {
+                analytics.tvFats.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, fats, AVG_FATS_DAILY)
+                analytics.linearProgressFats.progress = (fats / AVG_FATS_DAILY).toInt()
+            }
+        }
+
+        weekplanViewModel.dailyCarbs.observe(viewLifecycleOwner) { carbs ->
+            binding.apply {
+                analytics.tvCarbs.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, carbs, AVG_CARBS_DAILY)
+                analytics.linearProgressCarbs.progress = (carbs / AVG_CARBS_DAILY).toInt()
+            }
+        }
     }
 
     private fun updateDateText() {
@@ -100,6 +132,10 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
                     mealtimesAdapter.submitList(emptyList())
                     weekplanViewModel.loadMealtimesByDate(selectedDate)
+                    weekplanViewModel.getDailyFatsSummary(selectedDate)
+                    weekplanViewModel.getDailyKcalSummary(selectedDate)
+                    weekplanViewModel.getDailyCarbsSummary(selectedDate)
+                    weekplanViewModel.getDailyProteinSummary(selectedDate)
                 }
                 show(this@PlannerFragment.requireActivity().supportFragmentManager, DATE_PICKER_TAG)
             }
@@ -112,5 +148,9 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
 
     companion object {
         private const val DATE_PICKER_TAG = "DATE_PICKER"
+        private const val AVG_KCAL_DAILY = 2500
+        private const val AVG_PROTEINS_DAILY = 80
+        private const val AVG_CARBS_DAILY = 250
+        private const val AVG_FATS_DAILY = 70
     }
 }

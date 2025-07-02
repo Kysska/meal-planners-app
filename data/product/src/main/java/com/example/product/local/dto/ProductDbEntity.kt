@@ -8,7 +8,7 @@ import com.example.category.local.dto.CategoryDbEntity
 
 @Entity(tableName = "products")
 data class ProductDbEntity(
-    @PrimaryKey
+    @PrimaryKey()
     @ColumnInfo("id")
     val id: Int = 0,
     @ColumnInfo("name")

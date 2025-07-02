@@ -30,8 +30,6 @@ object ApiClient {
                     })
                 }
             }
-            .connectTimeout(1, TimeUnit.SECONDS)
-            .readTimeout(1, TimeUnit.SECONDS)
             .build()
     }
 }

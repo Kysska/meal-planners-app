@@ -18,6 +18,10 @@ internal class CategoryRepositoryImpl(
                 Completable.merge(
                     networkData.map { category ->
                         addCategory(category)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save category: $category")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }

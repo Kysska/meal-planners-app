@@ -27,7 +27,7 @@ class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var weekplanViewModel: WeekplanViewModel
+    lateinit var mealtimeCreateViewModel: MealtimeCreateViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +96,7 @@ class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
             }
         }
 
-        weekplanViewModel.setSelectedRecipe(recipeView)
+        mealtimeCreateViewModel.setSelectedRecipe(recipeView)
     }
 
     private fun validateForm(): Boolean {
@@ -114,7 +114,7 @@ class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
                 Toast.makeText(requireContext(),
                     getString(R.string.choose_category), Toast.LENGTH_SHORT).show()
             }
-            if (weekplanViewModel.selectedRecipe.value == null) {
+            if (mealtimeCreateViewModel.selectedRecipe.value == null) {
                 isValid = false
                 Toast.makeText(requireContext(),
                     getString(R.string.choose_recipe), Toast.LENGTH_SHORT).show()
@@ -130,8 +130,8 @@ class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
                 val selectedChip = chipGroupCategories.findViewById<Chip>(chipGroupCategories.checkedChipId)
                 val mealtimeType = selectedChip.text.toString().toMealtimeType()
 
-                weekplanViewModel.selectedRecipe.value?.let {
-                    weekplanViewModel.addCreatedMealtime(
+                mealtimeCreateViewModel.selectedRecipe.value?.let {
+                    mealtimeCreateViewModel.addCreatedMealtime(
                         quantity = quantityEditText.text.toString().toInt(),
                         gram = gramEditText.text.toString().toInt(),
                         recipeId = it.id,
@@ -140,7 +140,7 @@ class MealtimeCreateFragment : Fragment(R.layout.fragment_mealtime_add) {
                     )
                 }
             }
-            weekplanViewModel.removeSelectedRecipe()
+            mealtimeCreateViewModel.removeSelectedRecipe()
             findNavController().navigateUp()
         }
     }

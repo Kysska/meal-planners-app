@@ -9,6 +9,7 @@ import java.util.Date
 object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
     override fun map(from: Product): ProductDbEntity {
         return ProductDbEntity(
+            id = from.id,
             name = from.name,
             image = from.image,
             category = CategoryDatabaseMapper.map(from.category)

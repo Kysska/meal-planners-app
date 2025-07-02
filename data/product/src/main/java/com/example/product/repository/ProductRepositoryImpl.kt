@@ -15,11 +15,16 @@ internal class ProductRepositoryImpl(
     private val localProductDataSource: LocalProductDataSource
 ) : ProductRepository {
     override fun getProducts(): Single<List<Product>> {
-        return localProductDataSource.getProducts()
+        return remoteProductDataSource.getProduct()
             .flatMap { networkData ->
                 Completable.merge(
                     networkData.map { product ->
+                        Timber.tag(PRODUCT_REPOSITORY).d(product.toString())
                         addProduct(product)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save product: $product")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }
@@ -43,6 +48,10 @@ internal class ProductRepositoryImpl(
                 Completable.merge(
                     networkData.map { product ->
                         addProduct(product)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save product: $product")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }
@@ -58,6 +67,10 @@ internal class ProductRepositoryImpl(
                 Completable.merge(
                     networkData.map { product ->
                         addProduct(product)
+                            .onErrorResumeNext { error ->
+                                Timber.e(error, "Failed to save product: $product")
+                                Completable.complete()
+                            }
                     }
                 ).andThen(Single.just(networkData))
             }

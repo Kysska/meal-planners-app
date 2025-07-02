@@ -8,6 +8,7 @@ object CategoryDatabaseMapper : DatabaseMapper<Category, CategoryDbEntity> {
 
     override fun map(from: Category): CategoryDbEntity {
         return CategoryDbEntity(
+            id = from.id,
             title = from.name
         )
     }

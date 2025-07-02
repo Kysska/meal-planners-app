@@ -11,21 +11,30 @@ import com.example.ui.view.ViewState
 import com.example.ui.vo.RecipeView
 import com.example.utils.util.applySchedulers
 import com.example.weekplan.adapter.MealtimeListItem
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import java.util.Date
 import timber.log.Timber
 
 class WeekplanViewModel(
-    private val mealtimeRepository: MealtimeRepository,
-    private val recipeRepository: RecipeRepository
+    private val mealtimeRepository: MealtimeRepository
 ) : ViewModel() {
 
     private val _mealtimesState = MutableLiveData<ViewState<List<MealtimeListItem>>>()
     val mealtimesState: LiveData<ViewState<List<MealtimeListItem>>>
         get() = _mealtimesState
 
-    private val _selectedRecipe = MutableLiveData<RecipeView?>()
-    val selectedRecipe: LiveData<RecipeView?> = _selectedRecipe
+    private val _dailyKcal = MutableLiveData<Int>()
+    val dailyKcal : LiveData<Int> = _dailyKcal
+
+    private val _dailyProteins = MutableLiveData<Float>()
+    val dailyProteins : LiveData<Float> = _dailyProteins
+
+    private val _dailyCarbs = MutableLiveData<Float>()
+    val dailyCarbs : LiveData<Float> = _dailyCarbs
+
+    private val _dailyFats = MutableLiveData<Float>()
+    val dailyFats : LiveData<Float> = _dailyFats
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -46,33 +55,52 @@ class WeekplanViewModel(
         )
     }
 
-    fun addCreatedMealtime(type: MealtimeType, quantity: Int, gram: Int, recipeId: Int, date: Date) {
+    fun getDailyKcalSummary(date: Date) {
         compositeDisposable.add(
-            recipeRepository.getRecipeById(recipeId)
-                .flatMapCompletable { recipe ->
-                    mealtimeRepository.insertMealtime(
-                        Mealtime(
-                            recipe = recipe,
-                            quantity = quantity,
-                            gram = gram,
-                            type = type,
-                            date = date
-                        )
-                    )
-                }
+            mealtimeRepository.getDailyKcalSummary(date)
                 .applySchedulers()
-                .subscribe({}, { error ->
+                .subscribe({ kcal ->
+                    _dailyKcal.value = kcal
+                }, { error ->
                     Timber.tag(WEEKPLAN_VIEW_MODEL).e(error)
                 })
         )
     }
 
-    fun setSelectedRecipe(recipe: RecipeView?) {
-        _selectedRecipe.value = recipe
+    fun getDailyProteinSummary(date: Date) {
+        compositeDisposable.add(
+            mealtimeRepository.getDailyProteinSummary(date)
+                .applySchedulers()
+                .subscribe({ proteins ->
+                    _dailyProteins.value = proteins
+                }, { error ->
+                    Timber.tag(WEEKPLAN_VIEW_MODEL).e(error)
+                })
+        )
     }
 
-    fun removeSelectedRecipe() {
-        _selectedRecipe.value = null
+    fun getDailyFatsSummary(date: Date) {
+        compositeDisposable.add(
+            mealtimeRepository.getDailyFatsSummary(date)
+                .applySchedulers()
+                .subscribe({ fats ->
+                    _dailyFats.value = fats
+                }, { error ->
+                    Timber.tag(WEEKPLAN_VIEW_MODEL).e(error)
+                })
+        )
+    }
+
+    fun getDailyCarbsSummary(date: Date) {
+        compositeDisposable.add(
+            mealtimeRepository.getDailyCarbsSummary(date)
+                .applySchedulers()
+                .subscribe({ carbs ->
+                    _dailyCarbs.value = carbs
+                }, { error ->
+                    Timber.tag(WEEKPLAN_VIEW_MODEL).e(error)
+                })
+        )
     }
 
     private fun groupMealsByCategory(meals: List<Mealtime>): List<MealtimeListItem> {
