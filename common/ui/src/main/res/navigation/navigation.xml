@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealtimeAddFragment"
-        android:name="com.example.weekplan.MealtimeAddFragment"
+        android:name="com.example.weekplan.MealtimeCreateFragment"
         android:label="MealtimeAddFragment" >
         <action
             android:id="@+id/action_mealtimeAddFragment_to_searchFragment"
