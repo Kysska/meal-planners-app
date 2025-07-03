@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.product.domain.Product
 import com.example.ui.R
 import com.example.ui.adapter.ProductsAdapter
 import com.example.ui.databinding.FragmentRecipeDetailsBinding
 import com.example.ui.di.CommonComponentProvider
 import com.example.ui.extensions.loadImage
 import com.example.ui.view.ViewState
-import com.example.ui.viewModel.RecipeViewModel
+import com.example.ui.viewModel.RecipeDetailViewModel
 import javax.inject.Inject
 
 class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
@@ -25,7 +26,7 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
     }
 
     @Inject
-    lateinit var recipeViewModel: RecipeViewModel
+    lateinit var recipeDetailViewModel: RecipeDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,7 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
             toolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
+            ingredientsList.adapter = productsAdapter
         }
     }
 
@@ -58,7 +60,7 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
     }
 
     private fun observeViewModel(id: Int) {
-        recipeViewModel.recommendationState.observe(viewLifecycleOwner) { state ->
+        recipeDetailViewModel.recommendationState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ViewState.Loading -> {}
                 is ViewState.Success -> {
@@ -75,13 +77,21 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
                             val result = context?.getString(R.string.description, description, steps)
                             tvDescription.text = result
                             productsAdapter.submitList(products)
+                            setOnClickListener(products)
                         }
                     }
                 }
                 is ViewState.Error -> {}
             }
         }
-        recipeViewModel.loadRecipe(id)
+        recipeDetailViewModel.loadRecipe(id)
+    }
+
+    private fun setOnClickListener(products: List<Product>) {
+        binding.exportRecipeDetailsButton.setOnClickListener {
+            recipeDetailViewModel.exportProducts(products)
+            binding.exportRecipeDetailsButton.isEnabled = false
+        }
     }
 
     override fun onDestroyView() {

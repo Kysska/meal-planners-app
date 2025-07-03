@@ -4,7 +4,7 @@
     android:id="@+id/search_container"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:layout_marginLeft="@dimen/material_margin_large"
+    android:layout_marginLeft="@dimen/material_margin_normal"
     android:layout_marginRight="@dimen/material_margin_normal"
     android:background="@drawable/search_background"
     android:orientation="horizontal">

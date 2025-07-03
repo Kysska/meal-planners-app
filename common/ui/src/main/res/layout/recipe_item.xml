@@ -18,7 +18,6 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
-            android:clipToOutline="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

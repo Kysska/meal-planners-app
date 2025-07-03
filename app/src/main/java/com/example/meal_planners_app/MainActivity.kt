@@ -47,9 +47,11 @@ class MainActivity : AppCompatActivity(), SubComponents {
     }
 
     private fun showThemeSelectionDialog() {
-        val themes = arrayOf("Светлая", "Тёмная", "Системная")
+        val themes = arrayOf(getString(R.string.theme_light),
+            getString(R.string.theme_dark),
+            getString(R.string.theme_system))
         MaterialAlertDialogBuilder(this)
-            .setTitle("Выберите тему")
+            .setTitle(getString(R.string.choose_theme))
             .setItems(themes) { _, which ->
                 val mode = when (which) {
                     0 -> AppCompatDelegate.MODE_NIGHT_NO

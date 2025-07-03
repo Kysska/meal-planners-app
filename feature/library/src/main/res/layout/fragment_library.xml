@@ -20,7 +20,7 @@
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/material_margin_normal"
+        android:layout_margin="@dimen/material_margin_small"
         android:layout_marginTop="@dimen/material_margin_normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
@@ -71,10 +71,9 @@
         android:id="@+id/rvRecommendations"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recipe_item"
         android:layout_marginTop="@dimen/material_margin_small"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRecommendation" />

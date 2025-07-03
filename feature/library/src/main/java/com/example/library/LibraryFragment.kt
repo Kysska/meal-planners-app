@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.library.databinding.FragmentLibraryBinding
 import com.example.library.di.LibraryComponentProvider
 import com.example.search.SearchFragment
@@ -60,6 +61,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library), SearchBar.OnSearchA
 
         binding.scrollCategories.adapter = categoriesAdapter
         binding.rvRecommendations.adapter = recipesAdapter
+        binding.rvRecommendations.layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT)
         binding.tvSeeAllRecommendation.setOnClickListener {
             navigateToSearchFragmentRecommendationType()
         }
@@ -143,5 +145,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library), SearchBar.OnSearchA
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val SPAN_COUNT = 2
     }
 }

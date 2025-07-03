@@ -10,13 +10,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:paddingHorizontal="@dimen/material_padding_normal">
 
         <TextView
             android:id="@+id/title"
             style="@style/BaseSmallTextStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             tools:text="Мясо"
             android:gravity="center" />
