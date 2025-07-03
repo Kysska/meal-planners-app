@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BaseSmallTextStyle">
-        <item name="android:textColor">@color/text_primary</item>
         <item name="android:fontFamily">@font/sf_pro_display_regular</item>
         <item name="android:textSize">@dimen/text_small_size</item>
     </style>
 
     <style name="BaseMediumTextStyle">
-        <item name="android:textColor">@color/text_primary</item>
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
         <item name="android:textSize">@dimen/text_normal_size</item>
     </style>
 
     <style name="BaseLargeTextStyle">
-        <item name="android:textColor">@color/text_primary</item>
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
         <item name="android:textSize">@dimen/text_large_size</item>
     </style>

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.product.domain.Product
 import com.example.product.domain.ProductInCart
 import com.example.ui.databinding.ProductCheckboxItemBinding
 

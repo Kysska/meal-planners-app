@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SearchFragment"
-    android:background="@color/background_primary">
+    tools:context=".SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -30,7 +29,7 @@
     <com.example.ui.view.SearchBar
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/material_margin_normal"
         android:layout_marginTop="@dimen/material_margin_normal"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,7 +3,6 @@ package com.example.product.local.source
 import com.example.product.domain.Product
 import com.example.product.domain.ProductInCart
 import com.example.product.local.dao.ProductDao
-import com.example.product.local.dto.ProductInCartDbEntity
 import com.example.product.local.mapper.ProductDatabaseMapper
 import com.example.product.local.mapper.ProductInCartDatabaseMapper
 import com.example.product.repository.source.LocalProductDataSource

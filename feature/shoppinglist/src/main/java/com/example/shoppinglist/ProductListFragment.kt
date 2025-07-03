@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.product.domain.ProductInCart
 import com.example.shoppinglist.ProductCreateFragment.Companion.KEY_DATE
 import com.example.shoppinglist.databinding.FragmentProductListBinding
 import com.example.shoppinglist.di.ShoppingListComponentProvider

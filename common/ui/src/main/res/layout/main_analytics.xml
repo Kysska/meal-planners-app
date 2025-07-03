@@ -30,8 +30,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/circularProgress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/text_primary"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="1200 kcal" />
+        tools:text="1200 kcal" />
 
     <TextView
         android:id="@+id/tvCaloriesName"
@@ -40,6 +41,7 @@
         android:layout_marginTop="@dimen/material_margin_large"
         android:text="@string/proteins"
         style="@style/BaseSmallTextStyle"
+        android:textColor="@color/text_primary"
         app:layout_constraintEnd_toStartOf="@id/grammGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/circularProgress" />
@@ -50,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_margin_normal"
         style="@style/BaseMediumTextStyle"
+        android:textColor="@color/text_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/grammGuideline"
         app:layout_constraintTop_toBottomOf="@id/tvCaloriesName"
@@ -83,6 +86,7 @@
         android:layout_marginTop="@dimen/material_margin_large"
         android:text="@string/fats"
         style="@style/BaseSmallTextStyle"
+        android:textColor="@color/text_primary"
         app:layout_constraintEnd_toStartOf="@id/grammGuideline1"
         app:layout_constraintStart_toEndOf="@id/grammGuideline"
         app:layout_constraintTop_toBottomOf="@id/circularProgress" />
@@ -90,6 +94,7 @@
     <TextView
         android:id="@+id/tvFats"
         style="@style/BaseMediumTextStyle"
+        android:textColor="@color/text_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_margin_normal"
@@ -126,6 +131,7 @@
         android:layout_marginTop="@dimen/material_margin_large"
         android:text="@string/carbs"
         style="@style/BaseSmallTextStyle"
+        android:textColor="@color/text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/grammGuideline1"
         app:layout_constraintTop_toBottomOf="@id/circularProgress" />
@@ -133,6 +139,7 @@
     <TextView
         android:id="@+id/tvCarbs"
         style="@style/BaseMediumTextStyle"
+        android:textColor="@color/text_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_margin_normal"

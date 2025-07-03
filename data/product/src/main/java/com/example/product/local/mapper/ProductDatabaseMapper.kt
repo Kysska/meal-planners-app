@@ -4,8 +4,6 @@ import com.example.category.local.mapper.CategoryDatabaseMapper
 import com.example.product.domain.Product
 import com.example.product.local.dto.ProductDbEntity
 import com.example.utils.mapper.DatabaseMapper
-import timber.log.Timber
-import java.util.Date
 
 object ProductDatabaseMapper : DatabaseMapper<Product, ProductDbEntity> {
     override fun map(from: Product): ProductDbEntity {

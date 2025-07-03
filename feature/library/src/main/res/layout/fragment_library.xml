@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/material_padding_normal"
-    android:background="@color/background_primary">
+    android:padding="@dimen/material_padding_normal">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -20,7 +19,7 @@
     <com.example.ui.view.SearchBar
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/material_margin_normal"
         android:layout_marginTop="@dimen/material_margin_normal"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,4 +2,7 @@
 <resources>
     <color name="background_primary">@color/grey5</color>
     <color name="background_cards">@color/white</color>
+
+    <color name="background_dark_primary">@color/grey1</color>
+    <color name="background_dark_cards">@color/grey2</color>
 </resources>

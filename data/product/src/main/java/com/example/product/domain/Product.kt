@@ -1,7 +1,6 @@
 package com.example.product.domain
 
 import com.example.category.domain.Category
-import java.util.Date
 import java.util.UUID
 
 data class Product(

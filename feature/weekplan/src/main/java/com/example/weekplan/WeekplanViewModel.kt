@@ -6,12 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.example.mealtime.domain.Mealtime
 import com.example.mealtime.domain.MealtimeRepository
 import com.example.mealtime.domain.MealtimeType
-import com.example.recipe.domain.RecipeRepository
 import com.example.ui.view.ViewState
-import com.example.ui.vo.RecipeView
 import com.example.utils.util.applySchedulers
 import com.example.weekplan.adapter.MealtimeListItem
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import java.util.Date
 import timber.log.Timber
@@ -25,16 +22,16 @@ class WeekplanViewModel(
         get() = _mealtimesState
 
     private val _dailyKcal = MutableLiveData<Int>()
-    val dailyKcal : LiveData<Int> = _dailyKcal
+    val dailyKcal: LiveData<Int> = _dailyKcal
 
     private val _dailyProteins = MutableLiveData<Float>()
-    val dailyProteins : LiveData<Float> = _dailyProteins
+    val dailyProteins: LiveData<Float> = _dailyProteins
 
     private val _dailyCarbs = MutableLiveData<Float>()
-    val dailyCarbs : LiveData<Float> = _dailyCarbs
+    val dailyCarbs: LiveData<Float> = _dailyCarbs
 
     private val _dailyFats = MutableLiveData<Float>()
-    val dailyFats : LiveData<Float> = _dailyFats
+    val dailyFats: LiveData<Float> = _dailyFats
 
     private val compositeDisposable = CompositeDisposable()
 
