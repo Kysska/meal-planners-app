@@ -90,28 +90,28 @@ class PlannerFragment : Fragment(R.layout.fragment_planner) {
         weekplanViewModel.dailyKcal.observe(viewLifecycleOwner) { kcal ->
             binding.apply {
                 analytics.tvKcal.text = requireActivity().getString(com.example.ui.R.string.kcal_norma, kcal, AVG_KCAL_DAILY)
-                analytics.circularProgress.progress = kcal / AVG_KCAL_DAILY
+                analytics.circularProgress.progress = kcal / AVG_KCAL_DAILY * 100
             }
         }
 
         weekplanViewModel.dailyProteins.observe(viewLifecycleOwner) { proteins ->
             binding.apply {
                 analytics.tvProteins.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, proteins, AVG_PROTEINS_DAILY)
-                analytics.linearProgressProtein.progress = (proteins / AVG_PROTEINS_DAILY).toInt()
+                analytics.linearProgressProtein.progress = (proteins / AVG_PROTEINS_DAILY).toInt() * 100
             }
         }
 
         weekplanViewModel.dailyFats.observe(viewLifecycleOwner) { fats ->
             binding.apply {
                 analytics.tvFats.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, fats, AVG_FATS_DAILY)
-                analytics.linearProgressFats.progress = (fats / AVG_FATS_DAILY).toInt()
+                analytics.linearProgressFats.progress = (fats / AVG_FATS_DAILY).toInt() * 100
             }
         }
 
         weekplanViewModel.dailyCarbs.observe(viewLifecycleOwner) { carbs ->
             binding.apply {
                 analytics.tvCarbs.text = requireActivity().getString(com.example.ui.R.string.nutrients_norma, carbs, AVG_CARBS_DAILY)
-                analytics.linearProgressCarbs.progress = (carbs / AVG_CARBS_DAILY).toInt()
+                analytics.linearProgressCarbs.progress = (carbs / AVG_CARBS_DAILY).toInt() * 100
             }
         }
     }

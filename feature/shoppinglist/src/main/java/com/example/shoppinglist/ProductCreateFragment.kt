@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.product.domain.Product
+import com.example.product.domain.ProductInCart
 import com.example.shoppinglist.databinding.FragmentProductCreateBinding
 import com.example.shoppinglist.di.ShoppingListComponentProvider
 import com.example.ui.adapter.ProductsAdapter
@@ -24,7 +25,7 @@ class ProductCreateFragment : Fragment(R.layout.fragment_product_create), Search
 
     private val productsAdapter by lazy {
         ProductsAdapter { product: Product ->
-            productViewModel.addProductToCart(product.copy(date = getDate()))
+            productViewModel.addProductToCart(ProductInCart(date = getDate(), product = product))
             findNavController().navigateUp()
         }
     }

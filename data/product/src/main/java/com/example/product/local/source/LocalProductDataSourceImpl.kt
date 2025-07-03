@@ -1,9 +1,11 @@
 package com.example.product.local.source
 
 import com.example.product.domain.Product
+import com.example.product.domain.ProductInCart
 import com.example.product.local.dao.ProductDao
 import com.example.product.local.dto.ProductInCartDbEntity
 import com.example.product.local.mapper.ProductDatabaseMapper
+import com.example.product.local.mapper.ProductInCartDatabaseMapper
 import com.example.product.repository.source.LocalProductDataSource
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -13,7 +15,8 @@ import timber.log.Timber
 
 class LocalProductDataSourceImpl(
     private val productDao: ProductDao,
-    private val databaseMapper: ProductDatabaseMapper
+    private val databaseMapper: ProductDatabaseMapper,
+    private val databaseCartMapper: ProductInCartDatabaseMapper
 ) : LocalProductDataSource {
     override fun getProducts(): Single<List<Product>> {
         return productDao.getProducts()
@@ -55,24 +58,19 @@ class LocalProductDataSourceImpl(
             }
     }
 
-    override fun getProductsInShopCart(date: Date): Observable<List<Product>> {
+    override fun getProductsInShopCart(date: Date): Observable<List<ProductInCart>> {
         return productDao.getProductsInShopCart(date)
             .map { products ->
-                products.map { databaseMapper.reverseMap(it.product, it.date.date, it.date.selected) }
+                products.map { databaseCartMapper.reverseMap(it.date, databaseMapper.reverseMap(it.product)) }
             }
             .doOnError { throwable ->
                 Timber.tag(TAG).e(throwable)
             }
     }
 
-    override fun selectedProductInShopCart(product: Product): Completable {
-        return productDao.selectedProductInShopCart(
-            ProductInCartDbEntity(
-                product = product.id,
-                date = product.date,
-                selected = product.selected
-            )
-        )
+    override fun selectedProductInShopCart(product: ProductInCart): Completable {
+        val productInCartDb = databaseCartMapper.map(product)
+        return productDao.selectedProductInShopCart(productInCartDb)
             .doOnComplete {
                 Timber.tag(TAG).d("Update completed successfully")
             }
@@ -81,16 +79,10 @@ class LocalProductDataSourceImpl(
             }
     }
 
-    override fun addProductInShopCart(product: Product): Completable {
-        val productDb = databaseMapper.map(product)
-        return productDao.addProduct(productDb)
-            .concatWith(productDao.addProductInShopCart(
-                ProductInCartDbEntity(
-                    product = product.id,
-                    date = product.date,
-                    selected = product.selected
-                )
-            ))
+    override fun addProductInShopCart(product: ProductInCart): Completable {
+        val productDb = databaseCartMapper.map(product)
+        return productDao.addProduct(databaseMapper.map(product.product))
+            .concatWith(productDao.addProductInShopCart(productDb))
             .doOnComplete {
                 Timber.tag(TAG).d("Update completed successfully")
             }

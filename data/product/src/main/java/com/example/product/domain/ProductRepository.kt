@@ -10,8 +10,8 @@ interface ProductRepository {
     fun getProductById(id: Int): Single<Product>
     fun getProductsByCategory(categoryId: Int): Single<List<Product>>
     fun getProductsByQuery(query: String): Single<List<Product>>
-    fun getProductsInShopCart(date: Date): Observable<List<Product>>
-    fun selectedProductInShopCart(product: Product): Completable
-    fun addProductInShopCart(product: Product): Completable
+    fun getProductsInShopCart(date: Date): Observable<List<ProductInCart>>
+    fun selectedProductInShopCart(product: ProductInCart): Completable
+    fun addProductInShopCart(product: ProductInCart): Completable
     fun addProduct(product: Product): Completable
 }

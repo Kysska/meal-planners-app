@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.product.domain.Product
+import com.example.product.domain.ProductInCart
 import com.example.product.domain.ProductRepository
 import com.example.ui.view.ViewState
 import com.example.utils.util.applySchedulers
@@ -15,6 +16,10 @@ class ProductViewModel(
     private val productRepository: ProductRepository
 ) : ViewModel() {
 
+    private val _productsInState = MutableLiveData<ViewState<List<ProductInCart>>>()
+    val productsInState: LiveData<ViewState<List<ProductInCart>>>
+        get() = _productsInState
+
     private val _productsState = MutableLiveData<ViewState<List<Product>>>()
     val productsState: LiveData<ViewState<List<Product>>>
         get() = _productsState
@@ -22,18 +27,18 @@ class ProductViewModel(
     private val compositeDisposable = CompositeDisposable()
 
     fun loadProductsByDate(date: Date) {
-        _productsState.value = ViewState.Loading
+        _productsInState.value = ViewState.Loading
         compositeDisposable.add(
             productRepository.getProductsInShopCart(date)
                 .applySchedulers()
                 .subscribe({ products ->
-                    _productsState.value = if (products.isNotEmpty()) {
+                    _productsInState.value = if (products.isNotEmpty()) {
                         ViewState.Success(products)
                     } else {
                         ViewState.Success(emptyList())
                     }
                 }, { error ->
-                    _productsState.value = ViewState.Error(error)
+                    _productsInState.value = ViewState.Error(error)
                 })
         )
     }
@@ -72,7 +77,7 @@ class ProductViewModel(
         )
     }
 
-    fun addProductToCart(product: Product) {
+    fun addProductToCart(product: ProductInCart) {
         compositeDisposable.add(
             productRepository.addProductInShopCart(product)
                 .applySchedulers()
@@ -82,7 +87,7 @@ class ProductViewModel(
         )
     }
 
-    fun updateProductToCart(product: Product) {
+    fun updateProductToCart(product: ProductInCart) {
         compositeDisposable.add(
             productRepository.selectedProductInShopCart(product)
                 .applySchedulers()

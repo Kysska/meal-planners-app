@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.product.domain.ProductInCart
 import com.example.shoppinglist.ProductCreateFragment.Companion.KEY_DATE
 import com.example.shoppinglist.databinding.FragmentProductListBinding
 import com.example.shoppinglist.di.ShoppingListComponentProvider
@@ -25,7 +26,8 @@ class ProductListFragment : Fragment(R.layout.fragment_product_list) {
     private var selectedDate: Date = Date()
     private val productsCheckboxAdapter by lazy {
         ProductsCheckboxAdapter { product ->
-            productViewModel.updateProductToCart(product.copy(selected = !product.selected))
+            Timber.tag("ProductListFragment").d(product.toString())
+            productViewModel.updateProductToCart(product.copy(selected = !product.selected, description = "dgjklgj"))
         }
     }
 
@@ -67,7 +69,7 @@ class ProductListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun observeViewModel() {
-        productViewModel.productsState.observe(viewLifecycleOwner) { state ->
+        productViewModel.productsInState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ViewState.Loading -> {}
                 is ViewState.Success -> {

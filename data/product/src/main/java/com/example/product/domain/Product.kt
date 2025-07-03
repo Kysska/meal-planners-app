@@ -8,7 +8,5 @@ data class Product(
     val id: Int = UUID.randomUUID().hashCode(),
     val name: String = "",
     val image: String = "",
-    val category: Category = Category(),
-    val date: Date = Date(),
-    val selected: Boolean = false
+    val category: Category = Category()
 )

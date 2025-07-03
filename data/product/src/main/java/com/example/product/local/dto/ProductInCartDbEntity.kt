@@ -26,5 +26,9 @@ data class ProductInCartDbEntity(
     @ColumnInfo("date")
     val date: Date,
     @ColumnInfo("selected")
-    val selected: Boolean = false
+    val selected: Boolean,
+    @ColumnInfo("description")
+    val description: String,
+    @ColumnInfo("quantity")
+    val quantity: Int
 )

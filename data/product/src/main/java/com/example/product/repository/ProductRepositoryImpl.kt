@@ -1,6 +1,7 @@
 package com.example.product.repository
 
 import com.example.product.domain.Product
+import com.example.product.domain.ProductInCart
 import com.example.product.domain.ProductRepository
 import com.example.product.repository.source.LocalProductDataSource
 import com.example.product.repository.source.RemoteProductDataSource
@@ -80,15 +81,15 @@ internal class ProductRepositoryImpl(
             }
     }
 
-    override fun getProductsInShopCart(date: Date): Observable<List<Product>> {
+    override fun getProductsInShopCart(date: Date): Observable<List<ProductInCart>> {
         return localProductDataSource.getProductsInShopCart(date)
     }
 
-    override fun selectedProductInShopCart(product: Product): Completable {
+    override fun selectedProductInShopCart(product: ProductInCart): Completable {
         return localProductDataSource.selectedProductInShopCart(product)
     }
 
-    override fun addProductInShopCart(product: Product): Completable {
+    override fun addProductInShopCart(product: ProductInCart): Completable {
         return localProductDataSource.addProductInShopCart(product)
     }
 

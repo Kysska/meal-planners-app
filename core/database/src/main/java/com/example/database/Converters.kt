@@ -18,4 +18,14 @@ class Converters {
     fun dateToString(date: Date?): String? {
         return date?.let { formatter.format(it) }
     }
+
+    @TypeConverter
+    fun fromBoolean(value: Boolean): Int {
+        return if (value) 1 else 0
+    }
+
+    @TypeConverter
+    fun toBoolean(value: Int): Boolean {
+        return value == 1
+    }
 }
